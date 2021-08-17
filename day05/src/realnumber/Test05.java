@@ -14,13 +14,5 @@ public class Test05 {
 		
 		//출력
 		System.out.println(aver);
-		
-		
-		
-		
-		
-		
-		
-		
 	}
 }
