@@ -1,6 +1,7 @@
 import java.lang.*;
 public class Calculate {
 	public static void main(String[] args) {
+		
 		System.out.println("2021-8-16");
 		System.out.println(2021-8-16);
 		
@@ -8,7 +9,6 @@ public class Calculate {
 		// -사칙연산은 +, - , *, / 로 표시합니다
 		System.out.println("15000원입니다.");
 		System.out.println(5000*3 + "원입니다.");
-		System.out.println(15000);
-		
-	}
+		System.out.println(5000 * 3);
+		}
 }
