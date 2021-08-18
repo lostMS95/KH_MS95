@@ -25,7 +25,6 @@ public class Test01 {
 		int perTime = timeTotal /period; 
 		int payPerTime = pay * perTime;
 		
-		
 		//2시간 넘었는지 판정
 		boolean timeOver = hourTotal >= dis;
 		
