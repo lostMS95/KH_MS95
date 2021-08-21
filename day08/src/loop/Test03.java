@@ -1,0 +1,17 @@
+package loop;
+import java.lang.*;
+public class Test03 {
+	public static void main(String[] args) {
+		//Q : 10부터 0까지 카운트다운 출력을 수행하도록 코드 구현
+		//= 10부터 0까지 1씩 감소
+		//= 선언부 : int i = 10
+		//= 조건부 : i >= 0
+		//= 증감부 : i -= 1 , i-- , --i
+		
+		//출력
+		for(int i=10 ; i >= 0 ; i--) {
+			System.out.println(i);
+		}
+		
+	}
+}
