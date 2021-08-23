@@ -16,4 +16,3 @@ public class Test12 {
 		System.out.println("총 갯수 : " + total + "개");
 	}
 }
-
