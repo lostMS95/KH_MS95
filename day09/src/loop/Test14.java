@@ -12,7 +12,7 @@ public class Test14 {
 		int sec = sc.nextInt();
 		sc.close();
 
-		int time = min * 60 + sec;
+		int time = min * 60 + sec; 
 
 		for (int i = time; i >= 0; i--) {
 			System.out.println(i / 60 + "분" + i % 60 + "초 후 알람이 울립니다.");
