@@ -10,7 +10,7 @@ public class Test16 {
 		int num = sc.nextInt();
 		sc.close();
 
-		int count = 0;
+		int count = 0; 
 
 		for (int i = 1; i <= num; i++) {
 			System.out.println(num + " % " + i + " = " + num % i);
