@@ -10,7 +10,7 @@ public class Test15 {
 		int num = sc.nextInt();
 		sc.close();
 
-		int total = 0;
+		int total = 0; 
 
 		for (int i = num; i > 0; i /= 10) {
 			int n = i % 10;
