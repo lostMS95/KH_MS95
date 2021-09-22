@@ -16,5 +16,6 @@ public class Test01 {
 		//a와 b의 레벨 차이를 구하여 출력하세요
 		//System.out.println(a.level - b.level);
 		System.out.println(a.getLevel() - b.getLevel());
+		
 	}
 }
