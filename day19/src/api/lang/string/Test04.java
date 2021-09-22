@@ -16,10 +16,11 @@ public class Test04 {
 //		four		이메일에 `admin`이라는 글자는 사용할 수 없습니다.
 
 		boolean one = email.length() >= 5 && email.length() <= 50;
-		boolean two = email.contains("@") && !email.startsWith("@") && email.endsWith("@");
+		boolean two = email.contains("@") && !(email.startsWith("@") && email.endsWith("@"));
 		boolean three = email.endsWith(".com");
 		boolean four = !email.contains("admin");
-
+		
+	
 		boolean isPass = one && two && three && four;
 
 		if (isPass) {
