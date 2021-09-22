@@ -11,9 +11,9 @@ public class Test02 {
 		arr[2] = new Hotel("디럭스룸",6,300000,550000);
 		arr[3] = new Hotel("프리미어룸",8,1000000);
 		
+		arr[0].showInfo();
 		arr[1].showInfo();
 		arr[2].showInfo();
 		arr[3].showInfo();
-		arr[4].showInfo();
 	}
 }
