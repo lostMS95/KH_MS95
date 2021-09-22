@@ -19,7 +19,7 @@ public class Sonata {
 
 	public String getCompany() {
 		return company;
-	}
+	} 
 
 	public void setCompany(String company) {
 		this.company = company;
