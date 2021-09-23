@@ -7,8 +7,7 @@ import java.util.Date;
 public class Test04 {
 	public static void main(String[] args) {
 		Date d = new Date();
-
-//		2021-09-08 15:36:32
+		// 2021-09-08 15:36:32
 		Format f1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		System.out.println(f1.format(d));
 
