@@ -19,6 +19,7 @@ public class Test03 {
 		c.set(2021, Calendar.DECEMBER, 25);
 
 		c.add(Calendar.DATE, -count + 1);
+		
 
 		Date d = c.getTime();
 		Format f = new SimpleDateFormat("yyyy-MM-dd E");
