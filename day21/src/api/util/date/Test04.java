@@ -8,8 +8,8 @@ public class Test04 {
 	public static void main(String[] args) {
 		Date d = new Date();
 		// 2021-09-08 15:36:32
-		Format f1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		System.out.println(f1.format(d));
+		 Format f1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		 System.out.println(f1.format(d));
 
 //		2021년 9월 8일 수
 //		Format f2 = new SimpleDateFormat("y년 MMM d일 EEEE");
