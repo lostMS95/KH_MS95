@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Test07 {
 	public static void main(String[] args) {
 		// 파일 객체 생성
-		File file = new File("readme");
+		File file = new File("readme.md");
 		try {
 			Scanner sc = new Scanner(file);
 
