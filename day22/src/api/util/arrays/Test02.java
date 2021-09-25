@@ -8,7 +8,6 @@ public class Test02 {
 
 		int[] arr = new int[] { 30, 50, 20, 10, 40 };
 
-//		20은 몇 번째 위치에 있습니까?
 		int index = Arrays.binarySearch(arr, 210);
 		System.out.println("index = " + index);
 		if (index >= 0) {
