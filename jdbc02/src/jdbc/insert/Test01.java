@@ -12,7 +12,7 @@ public class Test01 {
 
 		Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "kh", "kh");
 
-		// database에 insert 명려을 전송하여 데이터를 추가하도록 지시
+		// database에 insert 명령을 전송하여 데이터를 추가하도록 지시
 
 		// 1. 명령문 준비
 		String sql = "insert into menu(menu_name, menu_price, menu_type) " + "values('갈치조림',7000,'식사')";
