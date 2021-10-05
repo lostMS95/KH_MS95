@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.Scanner;
 
 public class Test03 {
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
@@ -16,7 +15,7 @@ public class Test03 {
 		// => 해결책 : 전송객체(PreparedStatemen)에게 데이터 설정을 위임
 		// => 문제점 : 구문의 완성된 형태를 알 수 없다.
 
-		Scanner sc = new Scanner(System.in);
+		
 
 		String menuName = "팥빙수";
 		// String menuName = "KH's스페셜";//2번
