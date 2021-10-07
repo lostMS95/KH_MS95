@@ -44,5 +44,18 @@ public class ProductDto {
 	public void setExpire(String expire) {
 		this.expire = expire;
 	}
+	//예시 : 날짜를 원하는 대로 잘라서 반환하는 가상의 getter
+		public String getMadeDate() {
+			return made.substring(0, 10);
+		}
+		public String getMadeTime() {
+			return made.substring(11, 16);
+		}
+		public String getExpireDate() {
+			return expire.substring(0, 10);
+		}
+		public String getExpireTime() {
+			return expire.substring(11, 16);
+	}
 	
 }
