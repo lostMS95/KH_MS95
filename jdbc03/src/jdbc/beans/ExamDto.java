@@ -41,11 +41,9 @@ public class ExamDto {
 		public void setScore(int score) {
 			this.score = score;
 		}
-		
-	
-		
-	
-	
-	
-	
-}
+		@Override
+		public String toString() {
+			return "ExamDto [examId=" + examId + ", student=" + student + ", subject=" + subject + ", type=" + type
+					+ ", score=" + score + "]";
+		}
+	}
