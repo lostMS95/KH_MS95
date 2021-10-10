@@ -3,6 +3,7 @@ package jdbc.beans;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -191,14 +192,15 @@ public class MemberDao {
 
 	}
 
+//	회원검색 기능
 	public List<MemberDto> select(String column, String keyword) throws Exception {
 		Connection con = JdbcUtils.connect(USERNAME, PASSWORD);
 
 		String sql = "select * from member where instr(#1, ?) > 0 order by #1 asc";
-		sql = sql.replace("#1", column);
+		sql = sql.replace("#1", column);//있는 그대로 치환 = 정적 치환
 
 		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setString(1, keyword);
+		ps.setString(1, keyword); //따옴표도 넣어주고 여러가지 해주면 동적 치환
 		ResultSet rs = ps.executeQuery();
 
 		List<MemberDto> list = new ArrayList<>();
@@ -219,4 +221,43 @@ public class MemberDao {
 		con.close();
 		return list;
 	}
+
+	//	회원상세 기능
+	public MemberDto select(String memberId) throws Exception {
+		Connection con = JdbcUtils.connect(USERNAME, PASSWORD);
+		
+		String sql = "select * from member where member_id = ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, memberId);
+		ResultSet rs = ps.executeQuery();
+		
+		MemberDto memberDto;
+		if(rs.next()) {
+			memberDto = new MemberDto();
+			
+			//copy
+			memberDto.setMemberId(rs.getString("member_id"));
+			memberDto.setMemberPw(rs.getString("member_pw"));
+			memberDto.setMemberNick(rs.getString("member_nick"));
+			memberDto.setMemberBirth(rs.getString("member_birth"));
+			memberDto.setMemberEmail(rs.getString("member_email"));
+			memberDto.setMemberJoin(rs.getDate("member_join"));
+			memberDto.setMemberPoint(rs.getInt("member_point"));
+			memberDto.setMemberGrade(rs.getString("member_grade"));
+		}
+		else {
+			memberDto = null;
+		}
+		
+		con.close();
+		return memberDto;
+	}
+//	추가 기능에 대한 아이디어
+//	- 포인트 증가 혹은 감소 기능(Update)
+//	- 등급변경 기능(Update)
+//	- 최종 접속시각 기록(Update or Create)
+//		1. 마지막 접속시각만 알고 싶고 나머진 다 없어져도 되면 컬럼 1개를 추가하여 해결
+//		2. 여태까지의 모든 접속시각을 알고 싶다면 기록할 하위테이블을 하나 만들어서 해결
+	
+	
 }

@@ -15,6 +15,9 @@ public class MemberDto {
 	private int memberPoint;
 	private String memberGrade;
 	
+	public MemberDto() {
+		super();
+	}
 
 	public String getMemberId() {
 		return memberId;
