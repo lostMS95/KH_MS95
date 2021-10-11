@@ -9,8 +9,7 @@ import jdbc.util.JdbcUtils;
 
 public class Test04 {
 	public static void main(String[] args) throws Exception {
-		
-		
+
 		Scanner sc = new Scanner(System.in);
 		System.out.print("아이디 입력 : ");
 		String member_id = sc.next();
