@@ -19,7 +19,7 @@ public class ExamDao {
 	// = insert into exam(형식) values(번호,이름,과목,유형,점수)
 	// = insert into exam(형식) values(exam_seq.nextval, ?, ?, ?, ?)
 	public void insert(String student, String subject, String type, int score) throws Exception {
-		Connection con = JdbcUtils.connect("kh", "kh");
+		Connection con = jdbc.util.JdbcUtils.connect("kh", "kh");
 
 		String sql = "insert into exam values(exam_seq.nextval, ?, ?, ?, ?)";
 		PreparedStatement ps = con.prepareStatement(sql);
