@@ -12,4 +12,5 @@ public class JdbcUtils {
 				("jdbc:oracle:thin:@localhost:1521:xe", username, password);
 		return con;
 	}
+
 }
