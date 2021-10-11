@@ -3,10 +3,8 @@ package jdbc.beans;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import jdbc.util.JdbcUtils;
 
 //member 테이블에 접근하는 객체
@@ -258,6 +256,4 @@ public class MemberDao {
 //	- 최종 접속시각 기록(Update or Create)
 //		1. 마지막 접속시각만 알고 싶고 나머진 다 없어져도 되면 컬럼 1개를 추가하여 해결
 //		2. 여태까지의 모든 접속시각을 알고 싶다면 기록할 하위테이블을 하나 만들어서 해결
-	
-	
 }
