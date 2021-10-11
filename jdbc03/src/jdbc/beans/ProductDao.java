@@ -3,10 +3,8 @@ package jdbc.beans;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import jdbc.util.JdbcUtils;
 
 //product 테이블 관련된 CRRUD 처리 클래스
@@ -136,7 +134,7 @@ public class ProductDao {
 //	검색 메소드
 //	= 매개변수 : 항목(String), 검색어(String)
 //	= 반환형 : 상품 목록(List<ProductDto>)
-		public List<ProductDto> select(String column, String keyword) throws Exception {
+	public List<ProductDto> select(String column, String keyword) throws Exception {
 
 		Connection con = JdbcUtils.connect(USERNAME, PASSWORD);
 
@@ -165,18 +163,18 @@ public class ProductDao {
 		return list;
 	}
 
-		//		단일조회 메소드
+	// 단일조회 메소드
 	public ProductDto select(int no) throws Exception {
 		Connection con = JdbcUtils.connect(USERNAME, PASSWORD);
-		
+
 		String sql = "select * from product where no = ?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, no);
 		ResultSet rs = ps.executeQuery();
-		
+
 		ProductDto productDto;
-		
-		if(rs.next()) {
+
+		if (rs.next()) {
 			productDto = new ProductDto();
 			productDto.setNo(rs.getInt("no"));
 			productDto.setName(rs.getString("name"));
@@ -184,12 +182,11 @@ public class ProductDao {
 			productDto.setType(rs.getString("type"));
 			productDto.setMade(rs.getString("made"));
 			productDto.setExpire(rs.getString("expire"));
-		}
-		else {
+		} else {
 			productDto = null;
 		}
 		con.close();
 		return productDto;
-		
+
 	}
 }
