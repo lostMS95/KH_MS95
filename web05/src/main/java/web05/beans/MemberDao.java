@@ -252,6 +252,7 @@ public class MemberDao {
 		return memberDto;
 	}
 //	추가 기능에 대한 아이디어
+//   -로그인 기능(Read)
 //	- 포인트 증가 혹은 감소 기능(Update)
 //	- 등급변경 기능(Update)
 //	- 최종 접속시각 기록(Update or Create)
