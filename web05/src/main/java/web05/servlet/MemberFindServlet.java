@@ -18,9 +18,10 @@ public class MemberFindServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
+			//입력
 			String column = req.getParameter("column");
 			String keyword = req.getParameter("keyword");
-
+			//처리
 			boolean isSearch = column != null && !column.equals("") && 
 					column != null && !column.equals("");
 
@@ -32,6 +33,7 @@ public class MemberFindServlet extends HttpServlet {
 			} else {
 				list = memberDao.select();
 			}
+			//출력
 			resp.setCharacterEncoding("MS949");
 			for (MemberDto memberDto : list) {
 				resp.getWriter().println(memberDto.getMemberId());
