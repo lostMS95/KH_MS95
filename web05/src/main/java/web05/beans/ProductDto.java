@@ -57,5 +57,10 @@ public class ProductDto {
 		public String getExpireTime() {
 			return expire.substring(11, 16);
 	}
+		@Override
+		public String toString() {
+			return "ProductDto [no=" + no + ", name=" + name + ", type=" + type + ", price=" + price + ", made=" + made
+					+ ", expire=" + expire + "]";
+		}
 	
 }
