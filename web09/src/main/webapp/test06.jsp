@@ -13,7 +13,7 @@
 
 <%-- 프로그래밍 코드  --%>
 <%
-		//처리
+		//입력
 		String column = request.getParameter("column");
 		String keyword = request.getParameter("keyword");
 	
@@ -30,7 +30,7 @@
 		}
 %>
 
-
+<%-- 화면 코드(출력) --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,18 +48,22 @@
 			
 			
 			<select name="column">
-				<option value = "student">학생명</option>
-				<option value = "subject">과목명</option>
+					<option value = "student">학생명</option>
+					<option value = "subject">과목명</option>
+					<option value = "type">유형</option>
 				
 			</select>
 			
-			<input type="search" name="keyword" required>
-			<input type="submit" value = "검색">	
+				<input type="search" name="keyword" required>
+			
+				<input type="submit" value = "검색">	
 			</fieldset>
-			</form>
+		</form>
 		
+		<br><br>
 		
-		<table border="1" width = "600">
+		<!-- 표 -->
+		<table border="1" width = "700">
 			<thead>
 				<tr>
 					<th>번호</th>
@@ -71,6 +75,7 @@
 				</tr>
 			</thead>
 			
+			<!-- 데이터 -->
 			<tbody align = "center">
 				<% for(ExamDto examDto : list) {%>
 				<tr>
