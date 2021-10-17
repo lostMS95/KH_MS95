@@ -34,7 +34,7 @@ else {
 }
 %>
 
-<%-- 출력 : HTML 방식 + for, if --%>
+<!-- 출력 코드 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,9 +43,10 @@ else {
 </head>
 <body>
 
+	
 	<!-- 제목 -->
 	<h1><%=title %></h1>
-	
+
 	<!-- 테이블 코드 -->
 	<table border="1" width="900">
 		<thead>
@@ -60,11 +61,20 @@ else {
 				<th>회원등급</th>
 			</tr>
 		</thead>
-
+	
+		<%--
+				(Q)  아이디를 클릭하면 web05에 만든 MemberDetailServlet으로 이동하여 정보 출력
+		 --%>
+	
 		<tbody align = "center">
 			<%for (MemberDto memberDto : list) {%>
 			<tr>
-				<td><%=memberDto.getMemberId()%></td>
+				<td>
+							<!-- 상세 페이지로 연결할 수 있도록 hyperlink 설정 -->
+							<a href = "/web05/member/detail.kh?memberId=<%=memberDto.getMemberId()%>">
+												<%=memberDto.getMemberId()%>
+							</a>
+				</td>
 				<td><%=memberDto.getMemberNick()%></td>
 				<td><%=memberDto.getMemberBirth().substring(0, 10)%></td>
 				<td><%=memberDto.getMemberEmailString()%></td>
@@ -74,12 +84,10 @@ else {
 				<td><%=memberDto.getMemberGrade()%></td>
 			</tr>
 			<%}%>
-		
 		</tbody>
-	
 	</table>
 	
-	<!-- 검색 -->
+		<!-- 검색 -->
 	<form action="test08.jsp">
 		<fieldset>
 			<legend>검색화면</legend>
@@ -92,6 +100,6 @@ else {
 
 		</fieldset>
 	</form>
-	
+
 </body>
 </html>
