@@ -215,6 +215,7 @@ public class MemberDao {
 			memberDto.setMemberNick(rs.getString("member_nick"));
 			memberDto.setMemberBirth(rs.getString("member_birth"));
 			memberDto.setMemberEmail(rs.getString("member_email"));
+			memberDto.setMemberPhone(rs.getString("member_phone"));
 			memberDto.setMemberJoin(rs.getDate("member_join"));
 			memberDto.setMemberPoint(rs.getInt("member_point"));
 			memberDto.setMemberGrade(rs.getString("member_grade"));
@@ -244,6 +245,7 @@ public class MemberDao {
 			memberDto.setMemberNick(rs.getString("member_nick"));
 			memberDto.setMemberBirth(rs.getString("member_birth"));
 			memberDto.setMemberEmail(rs.getString("member_email"));
+			memberDto.setMemberPhone(rs.getString("member_phone"));
 			memberDto.setMemberJoin(rs.getDate("member_join"));
 			memberDto.setMemberPoint(rs.getInt("member_point"));
 			memberDto.setMemberGrade(rs.getString("member_grade"));
