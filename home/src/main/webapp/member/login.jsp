@@ -5,7 +5,8 @@
 
 <h1>회원 로그인</h1>
 
-<form action="login.kh" method="post">
+<form action="<%=request.getContextPath()%>/member/login.kh" method="post">
+<!-- <form action="login.kh" method="post"> -->
 
 	<table border="0">
 		<tbody>
