@@ -19,7 +19,8 @@ import home.beans.MemberDto;
 		"/member/mypage.jsp",
 		"/member/edit.jsp",	"/member/edit.kh",	"/member/edit_success.jsp",
 		"/member/password.jsp", "/member/password.kh", "/member/password_success.jsp",
-		"/member/check.jsp", "/member/quit.kh"
+		"/member/check.jsp", "/member/quit.kh",
+		"/point/*"
 })
 public class MemberFilter implements Filter{
 	@Override
