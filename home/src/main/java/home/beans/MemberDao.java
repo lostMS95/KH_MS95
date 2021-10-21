@@ -264,6 +264,35 @@ public class MemberDao {
 //	- 최종 접속시각 기록(Update or Create)
 //		1. 마지막 접속시각만 알고 싶고 나머진 다 없어져도 되면 컬럼 1개를 추가하여 해결
 //		2. 여태까지의 모든 접속시각을 알고 싶다면 기록할 하위테이블을 하나 만들어서 해결
-	
-	
+
+	public boolean addPoint(String memberId, int coinAmount) throws Exception{
+		Connection con = JdbcUtils.connect(USERNAME, PASSWORD);
+		
+		String sql ="update member set member_point = member_point + ? where member_id = ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, coinAmount);
+		ps.setString(2, memberId);
+		int result = ps.executeUpdate();
+		
+		con.close();
+		
+		return result>0;
+	}
+
+	public boolean refreshPoint(String memberId) throws Exception{
+		Connection con = JdbcUtils.connect(USERNAME, PASSWORD);
+		
+		String sql= "update member set member_point = ("
+				+ "select sum(history_amount) from history where member_id = ?"
+				+ ") where member_id = ?";
+			
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, memberId);
+		ps.setString(2, memberId);
+		int result = ps.executeUpdate();
+		
+		con.close();
+		
+		return result > 0;
+	}
 }
