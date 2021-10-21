@@ -8,6 +8,11 @@
 	//= jsp에서는 session이라는 내장객체가 존재하기 때문에 바로 접근이 가능하다.
 	String logkey = (String)session.getAttribute("logkey");
 	boolean login = logkey != null;
+	
+	//관리자인지 판정하는 코드
+	String grade = (String)session.getAttribute("grade");
+	boolean admin = grade != null && grade.equals("관리자");
+
 %>
 
 
@@ -36,7 +41,9 @@
 					<img src="./resource/image/kh_logo.jpg" width="250" height="50">
 					 -->
 					
-					<h3>과정평가형 정보처리산업기사 취득과정(logkey =<%=logkey%>, login =<%=login %>)</h3>
+					<h3>과정평가형 정보처리산업기사 취득과정
+					(logkey = <%=logkey%>, grade =<%=grade %>,  login = <%=login %>)
+					</h3>
 				</td>
 			</tr>
 			<tr>
@@ -64,6 +71,7 @@
 					 <a href="<%=root%>/index.jsp">홈으로</a>
 					 <a href="<%=root%>/member/logout.kh">로그아웃</a>
 					 <a href="<%=root%>/member/mypage.jsp">내정보</a>
+					 <a href ="<%=root%>/point/charge.jsp">[포인트 충전]</a>
 					<a href="#">게시판</a>
 					 <%}else{%>
 					 <a href="<%=root %>/index.jsp">홈으로</a>
@@ -71,6 +79,10 @@
 					<a href="<%=root %>/member/login.jsp">로그인</a>
 					<a href="#">게시판</a>
 					 <%}%>
+					 
+					 <%if(admin){ %>
+						<a href ="<%=root%>/admin/home.jsp">[관리메뉴]</a>					 
+					 <%} %>
 				</td>
 			</tr>
 			<tr>
