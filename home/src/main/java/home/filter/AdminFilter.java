@@ -33,7 +33,7 @@ public class AdminFilter implements Filter {
 		if (admin) {
 			chain.doFilter(req, resp);
 		} else {
-			resp.sendError(403);
+			resp.sendError(403);//forbidden, 권한 부족
 		}
 	}
 }
