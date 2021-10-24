@@ -38,8 +38,6 @@
 	주소?error
 	주소?
 --%>
-
-
 <%if(request.getParameter("error") != null) {%>
 <h5>
 	<font color="red">로그인 정보가 일치하지 않습니다</font>
