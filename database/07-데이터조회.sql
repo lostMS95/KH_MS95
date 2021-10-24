@@ -165,6 +165,15 @@ select * from product where expire between to_date
 --(2)
 select * from product where extract(year from expire) = 2021;
 
+select * from product where expire like '21%';--비추천
+select * from product where instr(expire, '21') = 1;--비추천
+
+-- to_char() : 문자열이 아닌 데이터를 문자열화 시키는 명령(숫자, 날짜 ---> 문자열)
+-- 형식 : to_char(날짜객체, 변환형식)
+select to_char(expire, 'YYYY-MM-DD') from product;
+select * from product where to_char(expire, 'YYYY-MM-DD') like '2021%';
+select * from product where instr(to_char(expire, 'YYYY-MM-DD'), '2021') = 1;
+
 -- 2. 여름(6,7,8)월에 생산된 과자 목록을 출력
 --(1)
 select * from product where type = '과자' and extract(month from made) >= 06 
@@ -173,18 +182,25 @@ and extract(month from made) <=08;
 --(2) any ()안에 조건이 true라도 만족하면?
 select * from product where type in('과자') and extract(month from made) = ANY(06,07,08);
 
-
+-- 3.오라클에서는 date끼리 계산이 가능하며 계산결과가 일단위로 나온다.
 -- 3. 과자와 사탕 중에서 유통기한이 1년 이하인 제품의 목록을 출력
 --(1)
 select * from product where type between '과자' and '사탕' and (expire - made) <=365;
 
+
 --(2)
 select * from product where type in('과자','사탕') and (expire - made) <= 365;
+select expire - made from product where type in ('과자', '사탕');
+select no, name, type, price, made, expire, expire-made "유통기한" from product
+where type in ('과자', '사탕') and expire - made <= 365;
+select product.*, expire-made "유통기한" from product
+where type in ('과자', '사탕') and expire - made <= 365;
 
 
 -- 4. 최근 2년간 생산된 제품의 목록을 출력(730일 전부터 지금까지)
 --(1)
 select * from product where (sysdate - made) <= 730;
+select product.*, sysdate-made from product where sysdate-made <= 730;--730일전(2년전)
 
 --(2)
 select *from product where made+730 > sysdate;
