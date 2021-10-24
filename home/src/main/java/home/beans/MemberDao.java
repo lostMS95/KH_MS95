@@ -295,4 +295,47 @@ public class MemberDao {
 		
 		return result > 0;
 	}
+	//관리자용 수정 기능
+	public boolean editByAdmin(MemberDto memberDto) throws Exception{
+		Connection con = JdbcUtils.connect(USERNAME, PASSWORD);
+		
+		String sql = "update member set member_nick = ?," + "member_birth = to_date(?, 'YYYY-MM-DD'),"
+				+ "member_email = ?, member_phone = ? , member_point=?,member_grade=? where member_id = ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, memberDto.getMemberNick());
+		ps.setString(2, memberDto.getMemberBirth());
+		ps.setString(3, memberDto.getMemberEmail());
+		ps.setString(4, memberDto.getMemberPhone());
+		ps.setInt(5, memberDto.getMemberPoint());
+		ps.setString(6, memberDto.getMemberGrade());
+		ps.setString(7, memberDto.getMemberId());
+		int result = ps.executeUpdate();
+		
+		return result > 0;
+	}
+		//회원등급별 포인트 보유량 조회 기능(통계기능)
+		//= MemberDto 외에 필요한 내용이 있다면 별도의 클래스를 만들어서 처리
+		//= DTO는 테이블과 동일한 형태로 만들어야 한다.
+		//= 이러한 경우 DTO 말고 VO를 만들어서 사용한다(Value Object)
+		//= VO는 자유로운 형태로 만들 수 있다.
+		//= DTO와 VO를 구분하지 않는 경우도 많이 있다.
+		public List<GroupPointVO> pointByGrade() throws Exception {
+			Connection con = JdbcUtils.connect(USERNAME, PASSWORD);
+			
+			String sql = "select member_grade, sum(member_point) total from member "
+					+ "group by member_grade order by total desc";
+			
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs= ps.executeQuery();
+			
+			List<GroupPointVO> list = new ArrayList<>();
+			while(rs.next()) {
+				GroupPointVO vo =new GroupPointVO()	;
+				vo.setMemberGrade(rs.getString("member_grade"));
+				vo.setTotal(rs.getInt("total"));
+				list.add(vo);
+			}
+			con.close();
+			return list;
+		}
 }
