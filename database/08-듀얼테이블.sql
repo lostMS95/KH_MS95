@@ -72,5 +72,3 @@ select count(member_email) "회원수" from member;
 
 select count(*) "개수" from product;
 select count(*) "회원수" from member;
-
-select * from member;
