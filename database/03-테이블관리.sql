@@ -139,7 +139,7 @@ commit;
 truncate table monster;
 
 -- monster 테이블 용 시퀀스(Sequence) 생성 
-create sequence monster_seq 
+create sequence monster_seq;
 -- minvalue 1 
 -- maxvalue 가장큰숫자(38자리) 
 -- start with 1 
