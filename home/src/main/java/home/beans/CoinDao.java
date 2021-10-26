@@ -32,7 +32,7 @@ public class CoinDao {
 		con.close();
 		return coinList;
 	}
-
+	//coin 상세조회
 	public CoinDto get(int coinNo) throws Exception {
 		Connection con = JdbcUtils.connect(USERNAME, PASSWORD);
 		
@@ -54,5 +54,45 @@ public class CoinDao {
 		}
 		con.close();
 		return coinDto;
+	}
+	//포인트 상품 삭제
+	public boolean delete(int coinNo) throws Exception {
+		Connection con = JdbcUtils.connect(USERNAME, PASSWORD);
+		
+		String sql ="delete coin where coin_no = ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, coinNo);
+		int result = ps.executeUpdate();
+		
+		con.close();
+		return result > 0;
+	}
+	//포인트 상품 수정
+	public boolean edit(CoinDto coinDto) throws Exception{
+		Connection con = JdbcUtils.connect(USERNAME, PASSWORD);
+		
+		String sql = "update coin set coin_name = ?, coin_amount= ? where coin_no =?";
+		PreparedStatement ps =con.prepareStatement(sql);
+		ps.setString(1, coinDto.getCoinName());
+		ps.setInt(2, coinDto.getCoinAmount());
+		ps.setInt(3, coinDto.getCoinNo());
+		int result =ps.executeUpdate();
+		
+		con.close();
+		
+		return result > 0;
+	}
+	//포인트 상품 추가
+	public void add(CoinDto coinDto) throws Exception {
+		Connection con = JdbcUtils.connect(USERNAME, PASSWORD);
+		
+		String sql = "insert into coin(coin_no,coin_name,coin_amount) "
+				+ "values(coin_seq.nextval,?,?)";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, coinDto.getCoinName());
+		ps.setInt(2, coinDto.getCoinAmount());
+		ps.execute();
+		
+		con.close();
 	}
 }	
