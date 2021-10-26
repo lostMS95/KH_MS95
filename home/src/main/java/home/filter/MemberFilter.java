@@ -20,7 +20,7 @@ import home.beans.MemberDto;
 		"/member/edit.jsp",	"/member/edit.kh",	"/member/edit_success.jsp",
 		"/member/password.jsp", "/member/password.kh", "/member/password_success.jsp",
 		"/member/check.jsp", "/member/quit.kh",
-		"/point/*"
+		"/point/*","/board/*"
 })
 public class MemberFilter implements Filter{
 	@Override
