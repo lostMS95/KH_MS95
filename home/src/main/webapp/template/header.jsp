@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 
 <%
-
 	//로그인 상태인지 아닌지 판정하는 코드
 	//= 로그인 상태라는 것은 세션에 존재하는 logkey라는 데이터가 null이 아니라는 것이다.
 	//= jsp에서는 session이라는 내장객체가 존재하기 때문에 바로 접근이 가능하다.
@@ -12,10 +11,7 @@
 	//관리자인지 판정하는 코드
 	String grade = (String)session.getAttribute("grade");
 	boolean admin = grade != null && grade.equals("관리자");
-
 %>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,12 +68,12 @@
 					 <a href="<%=root%>/member/logout.kh">로그아웃</a>
 					 <a href="<%=root%>/member/mypage.jsp">내정보</a>
 					 <a href ="<%=root%>/point/charge.jsp">[포인트 충전]</a>
-					<a href="#">게시판</a>
+					<a href="<%=root%>/board/list.jsp">게시판</a>
 					 <%}else{%>
 					 <a href="<%=root %>/index.jsp">홈으로</a>
 					<a href="<%=root %>/member/join.jsp">회원가입</a>
 					<a href="<%=root %>/member/login.jsp">로그인</a>
-					<a href="#">게시판</a>
+					<a href="<%=root%>/board/list.jsp">게시판</a>
 					 <%}%>
 					 
 					 <%if(admin){ %>
