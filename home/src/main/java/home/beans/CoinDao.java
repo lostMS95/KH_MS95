@@ -7,12 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CoinDao {
-	public static final String USERNAME = "kh";
-	public static final String PASSWORD = "kh";
-	
+
 	//coin 상품 전체 목록 조회
 	public List<CoinDto> list() throws Exception {
-		Connection con = JdbcUtils.connect(USERNAME, PASSWORD);
+		Connection con = JdbcUtils.connect2();
 		
 		String sql = "select * from coin order by coin_amount asc" ;
 		PreparedStatement ps=con.prepareStatement(sql);
@@ -34,7 +32,7 @@ public class CoinDao {
 	}
 	//coin 상세조회
 	public CoinDto get(int coinNo) throws Exception {
-		Connection con = JdbcUtils.connect(USERNAME, PASSWORD);
+		Connection con = JdbcUtils.connect2();
 		
 		String sql = "select * from coin where coin_no = ?";
 		PreparedStatement ps = con.prepareStatement(sql);
@@ -57,7 +55,7 @@ public class CoinDao {
 	}
 	//포인트 상품 삭제
 	public boolean delete(int coinNo) throws Exception {
-		Connection con = JdbcUtils.connect(USERNAME, PASSWORD);
+		Connection con = JdbcUtils.connect2();
 		
 		String sql ="delete coin where coin_no = ?";
 		PreparedStatement ps = con.prepareStatement(sql);
@@ -69,7 +67,7 @@ public class CoinDao {
 	}
 	//포인트 상품 수정
 	public boolean edit(CoinDto coinDto) throws Exception{
-		Connection con = JdbcUtils.connect(USERNAME, PASSWORD);
+		Connection con = JdbcUtils.connect2();
 		
 		String sql = "update coin set coin_name = ?, coin_amount= ? where coin_no =?";
 		PreparedStatement ps =con.prepareStatement(sql);
@@ -84,7 +82,7 @@ public class CoinDao {
 	}
 	//포인트 상품 추가
 	public void add(CoinDto coinDto) throws Exception {
-		Connection con = JdbcUtils.connect(USERNAME, PASSWORD);
+		Connection con = JdbcUtils.connect2();
 		
 		String sql = "insert into coin(coin_no,coin_name,coin_amount) "
 				+ "values(coin_seq.nextval,?,?)";
