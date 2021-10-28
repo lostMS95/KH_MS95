@@ -26,7 +26,7 @@
 	}
 	else {
 		//list = boardDao.select();//모든목록
-		list = boardDao.listByTopN(pagination.getBegin(), pagination.getEnd());//원하는 구간 목록
+		list = boardDao.listByTreeSort(pagination.getBegin(), pagination.getEnd());//원하는 구간 목록
 	}
 %>
 
@@ -35,17 +35,21 @@
 
 <!-- 제목 -->
 <h2>두근두근 회원게시판</h2>
-<h5>타인에 대한 무분별한 비판은 제재 대상가입니다</h5>
+<h5>반갑습니다요잉</h5>
 
 <!-- 테이블 -->
 <table border="1" width="90%">
 		<thead>
 			<tr>
 				<th>번호</th>
-				<th width="45%">제목</th>
+				<th width="40%">제목</th>
 				<th>글쓴이</th>
 				<th>작성시각</th>
-				<th>조회수</tr>
+				<th>조회수</th>
+				<th>상위글</th>
+				<th>그룹</th>
+				<th>차수</th>
+				
 			<tr>
 		</thead>
 		<tbody align="center">
@@ -53,11 +57,41 @@
 			<tr>
 				<td><%=boardDto.getBoardNo() %></td>
 				<td align="left">
-				<a href ="detail.jsp?boardNo=<%=boardDto.getBoardNo()%>"><%=boardDto.getBoardTitle() %></a>
+				
+				<%-- 
+					게시글의 제목을 출력하기 전에 차수에 따라 띄어쓰기를 진행한다
+					띄어쓰기는 HTML 특수문자인 &nbsp; 을 사용한다.
+					답변글에는 reply icon을 추가로 출력한다. 
+				--%>
+				<%
+					//if(boardDto.getBoardDepth() > 0){
+					if(boardDto.hasDepth()){ 
+				%>
+					<%for(int i=0; i < boardDto.getBoardDepth(); i++){ %>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<%} %>
+				
+					<img src="<%=request.getContextPath()%>/resource/image/reply2.png" width="15" height="15">
+				<%} %>
+				
+				<a href ="detail.jsp?boardNo=<%=boardDto.getBoardNo()%>">
+					<%=boardDto.getBoardTitle() %>
+				</a>
+					
+					<!-- 제목 뒤에 댓글 개수를 출력한다 -->
+					<%
+					//if(boardDto.getBoardReply() > 0){
+					if(boardDto.getBoardReply() > 0) {
+					%>
+							[<%=boardDto.getBoardReply()%>]
+					<%} %>
 				</td>
 				<td><%=boardDto.getBoardWriter() %></td>
 				<td><%=boardDto.getBoardTime() %></td>
 				<td><%=boardDto.getBoardRead() %></td>
+				<td><%=boardDto.getBoardSuperno() %></td>
+				<td><%=boardDto.getBoardGroupno() %></td>
+				<td><%=boardDto.getBoardDepth() %></td>
 			</tr>
 			<%} %>
 		</tbody>

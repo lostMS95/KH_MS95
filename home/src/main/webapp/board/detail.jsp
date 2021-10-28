@@ -1,3 +1,6 @@
+<%@page import="home.beans.ReplyDto"%>
+<%@page import="java.util.List"%>
+<%@page import="home.beans.ReplyDao"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.HashSet"%>
 <%@page import="home.beans.BoardDto"%>
@@ -58,6 +61,12 @@
 	boolean owner = boardDto.getBoardWriter().equals(memberId);
 %>
 
+<%
+	//현재 게시글에 대한 댓글을 조회
+	ReplyDao replyDao = new ReplyDao();
+	List<ReplyDto> replyList = replyDao.list(boardNo);
+%>
+
 <%-- 출력 --%>
 <jsp:include page="/template/header.jsp"></jsp:include>
 
@@ -91,6 +100,7 @@
 		<tr>
 			<td align="right">
 				<a href="write.jsp">글쓰기</a>
+				<a href="write.jsp?boardSuperno="<%=boardDto.getBoardNo()%>>답글쓰기</a>
 				<a href="list.jsp">목록보기</a>
 				
 				<%if(owner){ %>
@@ -101,5 +111,84 @@
 		</tr>
 	</tbody>
 </table>	
+
+<%--댓글 작성, 목록 영역 --%>
+<form action = "./reply/insert.kh" method="post">
+<input type="hidden" name="boardNo" value="<%=boardDto.getBoardNo() %>">
+<table border="0" width="80%">
+	<tbody>
+		<tr>
+			<td>
+					<textarea name="replyContent" required rows="4" cols="80"></textarea>
+			</td>
+			<td>
+					<input type = "submit" value ="댓글작성">
+			</td>
+		</tr>
+	</tbody>
+</table>
+</form>
+
+<%if(replyList.isEmpty()){ %>
+<!-- 댓글이 없을 경우에 표시할 테이블 -->
+<table border="1" width="80%">
+	<tbody>
+		<tr><th>작성된 댓글이 없습니다</th></tr>
+	</tbody>
+</table>
+
+<%}else{ %>
+<!-- 댓글이 있을 경우에 표시할 테이블 -->
+<table border="1" width="80%">
+	<tbody>
+	<%for(ReplyDto replyDto : replyList) { %>
+		<%
+			//본인 글인지 판정 : 세션의 회원아이디와 댓글의 작성자를 비교
+			//작성자 댓글인지 판정 : 게시글 작성자와 댓글의 작성자를 비교
+			boolean myReply = memberId.equals(replyDto.getReplyWriter());
+			boolean ownerReply = boardDto.getBoardWriter().equals(replyDto.getReplyWriter());
+		%>
+		<tr>
+			<td width="30%">
+			<%=replyDto.getReplyWriter()%>
+			<%--게시글 작성자의 댓글에는 표시 --%>
+			<%if(ownerReply){%>
+				[작성자]
+			<%}%>
+			
+			<br>
+			(<%=replyDto.getReplyFullTime() %>)
+			</td>
+				<td>
+					<pre><%=replyDto.getReplyContent() %></pre>
+				</td>
+				<td width ="15%">
+				<%-- 현재 사용자가 작성한 글에만 수정, 삭제를 표시 --%>
+				<%if(myReply){%>
+				수정 | 
+				<a href ="reply/delete.kh?boardNo=<%=boardDto.getBoardNo() %>&replyNo=<%=replyDto.getReplyNo()%>">삭제</a>
+				<%}%>
+				</td>
+			</tr>
+		
+		<%--본인 글일 경우 수정을 위한 공간을 추가적으로 생성 --%>
+		<%if(myReply){ %>
+		<tr>
+			<td colspan="3">
+				<form action="reply/edit.kh" method="post">
+					<input type="hidden" name="replyNo" value="<%=replyDto.getReplyNo() %>">
+					<input type="hidden" name="boardNo" value="<%=boardDto.getBoardNo()%>">
+					<textarea name="replyContent" required rows="4" cols="80"><%=replyDto.getReplyContent() %></textarea>
+					<input type="submit" value="수정">
+				</form>
+			<td>
+		</tr>
+		<%} %>
+		
+		<%} %>
+	</tbody>
+</table>
+<%} %>
+
 
 <jsp:include page="/template/footer.jsp"></jsp:include>
