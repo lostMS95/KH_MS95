@@ -144,12 +144,13 @@ public class BoardDao {
 		public void insert2(BoardDto boardDto) throws Exception {
 			Connection con = JdbcUtils.connect2();
 
-			String sql = "insert into board values(?,?,?,?,sysdate,0,0,0,0,0)";
+			String sql = "insert into board values(?,?,?,?,sysdate,0,0,null,?,0)";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, boardDto.getBoardNo());
 			ps.setString(2, boardDto.getBoardWriter());
 			ps.setString(3, boardDto.getBoardTitle());
 			ps.setString(4, boardDto.getBoardContent());
+			ps.setInt(5, boardDto.getBoardNo());
 			ps.execute();
 			con.close();
 		}
@@ -304,4 +305,74 @@ public class BoardDao {
 		con.close();
 		return count;
 	}
+	//댓글 개수 갱신 기능
+	public boolean refreshReplyCount(int boardNo) throws Exception {
+		Connection con = JdbcUtils.connect2();
+		
+		String sql = "update board "
+				+ "set board_reply=(select count(*) from reply where board_no =?) "
+				+ "where board_no=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, boardNo);
+		ps.setInt(2, boardNo);
+		int result = ps.executeUpdate();
+		con.close();
+		
+		return result > 0;
+	}
+	
+	//계층형 목록(tree)
+		public List<BoardDto> listByTreeSort(int begin, int end) throws Exception {
+				Connection con = JdbcUtils.connect2();
+				
+				String sql = "select * from ("
+						+ "select rownum rn, TMP.* from ("
+							+ "select * from board "
+							+ "connect by prior board_no = board_superno "
+							+ "start with board_superno is null "
+							+ "order siblings by board_groupno desc, board_no asc"
+						+ ")TMP"
+				+ ") where rn between ? and ?";
+				PreparedStatement ps = con.prepareStatement(sql);
+				ps.setInt(1, begin);
+				ps.setInt(2, end);
+				ResultSet rs = ps.executeQuery();
+				
+				List<BoardDto> list = new ArrayList<>();
+				while(rs.next()) {
+					BoardDto boardDto = new BoardDto();
+					
+					boardDto.setBoardNo(rs.getInt("board_no"));
+					boardDto.setBoardWriter(rs.getString("board_writer"));
+					boardDto.setBoardTitle(rs.getString("board_title"));
+					boardDto.setBoardContent(rs.getString("board_content"));
+					boardDto.setBoardTime(rs.getDate("board_time"));
+					boardDto.setBoardRead(rs.getInt("board_read"));
+					boardDto.setBoardReply(rs.getInt("board_reply"));
+					boardDto.setBoardSuperno(rs.getInt("board_superno"));
+					boardDto.setBoardGroupno(rs.getInt("board_groupno"));
+					boardDto.setBoardDepth(rs.getInt("board_depth"));
+					
+					list.add(boardDto);
+				}
+				con.close();
+				return list;
+		}
+
+		public void writeAnswer(BoardDto boardDto) throws Exception {
+		Connection con = JdbcUtils.connect2();
+		
+		String sql = "insert into board values(?, ?, ?, ?,sysdate,0,0,?,?,?)";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, boardDto.getBoardNo());
+		ps.setString(2, boardDto.getBoardWriter());
+		ps.setString(3, boardDto.getBoardTitle());
+		ps.setString(4, boardDto.getBoardContent());
+		ps.setInt(5, boardDto.getBoardSuperno());
+		ps.setInt(6, boardDto.getBoardGroupno());
+		ps.setInt(7, boardDto.getBoardDepth());
+		ps.execute();
+		
+		con.close();
+		}
 }
