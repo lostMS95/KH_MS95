@@ -60,10 +60,19 @@ public class Pagination {
 		this.begin = this.end - (this.pageSize - 1);
 
 		// block 계산
-		this.lastBlock = (this.count - 1) / this.blockSize + 1;
+		this.lastBlock = (this.count - 1) / this.pageSize + 1;
 		this.startBlock = (this.p - 1) / this.blockSize * this.blockSize + 1;
 		this.finishBlock = this.startBlock + (this.blockSize - 1);
+	
+		//list 계산
+		if(this.isSearch()) {
+					this.list = boardDao.searchByTopN(column, keyword, begin, end);
+		}
+		else {
+			//this.list = boardDao.listByRownum(begin, end);//일반
+			this.list = boardDao.listByTreeSort(begin, end);//계층형
 	}
+}
 	
 	//getter
 	public int getP() {
