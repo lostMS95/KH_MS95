@@ -25,6 +25,13 @@ public class BoardWriteServlet extends HttpServlet{
 			boardDto.setBoardTitle(req.getParameter("boardTitle"));
 			boardDto.setBoardContent(req.getParameter("boardContent"));
 			
+			//새글인지 답글인지 판정 : 파라미터에 boardSuperno가 있으면 답글이다
+			boolean answer = req.getParameter("boardSuperno") != null;
+			if(answer) {
+				boardDto.setBoardSuperno(Integer.parseInt(req.getParameter("boardSuperno")));
+			}
+			
+		
 			//처리
 			//(1) 일반적인 등록
 			//BoardDao boardDao = new BoardDao();
@@ -34,7 +41,19 @@ public class BoardWriteServlet extends HttpServlet{
 			BoardDao boardDao = new BoardDao();
 			int boardNo = boardDao.getSequence();//시퀀스 번호 생성
 			boardDto.setBoardNo(boardNo);//게시글 데이터에 생성된 번호 추가
-			boardDao.insert2(boardDto);//게시글 등록
+		
+			//답글일 경우 등록될 글의 정보를 상위글 정보를 기준으로 계산해야 한다.
+			if(answer) {
+				//1. 상위글의 모든 정보를 불러온다
+				BoardDto parentDto = boardDao.select(boardDto.getBoardSuperno());
+				//2. 상위글의 정보를 토대로 등록될 글의 정보를 계산한다
+				//= 그룹은 동일하게 유지하고 차수는 1 증가시켜서 설정한다
+				boardDto.setBoardGroupno(parentDto.getBoardGroupno());
+				boardDto.setBoardDepth(parentDto.getBoardDepth()+1);			
+				boardDao.writeAnswer(boardDto);//게시글 등록(답글)
+			}else {
+				boardDao.insert2(boardDto);//게시글 등록(새글)
+			}
 			
 			//출력
 			//(1) list.jsp로 리다이렉트
