@@ -19,7 +19,7 @@
 
 <h2><%=title%></h2>
 
-<form action="write.kh" method="post">
+<form action="write.kh" method="post" enctype="multipart/form-data">
 
 <%-- 답글일 경우에는 반드시 "상위글번호(boardSuperno)" 를 처리페이지로 전송해야 한다 --%>
 <%if(answer) {%>
@@ -35,6 +35,14 @@
 			<th>내용</th>
 			<td>
 				<textarea name="boardContent" required rows="10" cols="60"></textarea>
+			</td>
+		</tr>
+		
+		<!-- 첨부파일 -->
+		<tr>
+			<th>첨부</th>
+			<td>
+				<input type="file" name="attach">
 			</td>
 		</tr>
 	</tbody>
