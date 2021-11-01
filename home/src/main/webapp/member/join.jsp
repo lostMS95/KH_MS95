@@ -18,7 +18,7 @@
 	= GET/POST는 보안과 관계가 없다.
  -->
 
-<form action = "join.kh" method="post">
+<form action = "join.kh" method="post" enctype="multipart/form-data">
 
 	<table border="0">
 		<tbody>
@@ -59,6 +59,12 @@
 				</td>
 			</tr>
 			<tr>
+				<th>프로필</th>
+					<td>
+						<input type="file" name=attach accept="image/*">
+					</td>
+			</tr>
+			<tr>
 			<!-- 
 					colspan을 사용하면 셀 1개를 특정 칸 수만큼 늘릴 수 있다.
 					rowspan을 사용하면 셀 1개를 특정 줄 수만큼 늘릴 수 있다.
@@ -67,7 +73,7 @@
 				<td colspan="2" align="right">
 					<input type="submit" value="가입"></td>
 			</tr>			
-		</tbody>
+			</tbody>
 	</table>
 
 </form>
