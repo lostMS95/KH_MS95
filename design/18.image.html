@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이미지 스타일링</title>
+    <link rel="stylesheet" type="text/css" href="commons.css">
+    <style>
+        /*
+            이미지 스타일
+
+            -공용 스타일 : .image
+            - 확장 스타일
+                .image-round : 둥근 이미지
+                .image-border : 테두라기 있는 이미지
+                .image-hover:마우스가 올라가면 테두리가 생기는 이미지
+                .image-blur : 마우스가 올라가면 선명해지는 이미지
+        */
+        .image{
+            border:2px solid transparent;
+        }
+        .image.image-round {
+            border-radius:50%;
+        }
+        .image-border,
+        .image-hover:hover {
+            border:2px solid grey;
+        }
+        .image.image-blur{
+            /*
+            opacity를 이용하여 불투명 정도를 0(0%) 부터 1(100%) 사이에서 설정
+            */
+            opacity:0.3;
+        }
+        .image.image-blur:hover {
+            opacity: 1;
+        }
+        .image.image-shadow{
+            box-shadow: 7px 7px 100px 25px black;
+        }  
+        .image.image-leaf {
+            border-top-left-radius: 50%;
+            border-bottom-left-radius: 50%;
+            border-end-start-radius: 75%;
+        }
+    </style>
+</head>
+<body>
+    <img src="https://via.placeholder.com/200x200" class="image image-round">
+    <img src="https://via.placeholder.com/200x200" class="image image-border">
+    <img src="https://via.placeholder.com/200x200" class="image image-round image-border">
+    <img src="https://via.placeholder.com/200x200" class="image image-hover">
+    <img src="https://via.placeholder.com/200x200" class="image image-shadow">
+    <img src="https://via.placeholder.com/200x200" class="image image-blur">
+    <img src="https://via.placeholder.com/200x200" class="image image-leaf">
+    <img src="https://via.placeholder.com/200x200" class="image">
+    <img src="https://via.placeholder.com/200x200" class="image">
+    <img src="https://via.placeholder.com/200x200" class="image">
+   
+</body>
+</html>
