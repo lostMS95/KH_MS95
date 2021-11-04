@@ -8,23 +8,12 @@
     <title>sidebar 만들기</title>
     <link rel="stylesheet" type="text/css" href="commons.css">
     <style>
-        /* 미관상 체크박스를 숨기고 라벨을 표시 */
-        .sidebar-button {
-            position: fixed;
-            top: 15px;
-            left: 15px;
-            z-index: 100000;
-            font-size: 30px;
-            border: 1px solid black;
-            cursor: pointer;
-            width: 50px;
-            height: 50px;
-            text-align: center;
-
-        }
-
+        /* 테스트를 위해 체크박스가 고정적으로 보이도록 표시 */
         #sidebar-switch {
-            display: none;
+            position: fixed;
+            top: 5px;
+            left: 5px;
+            z-index: 100000;
         }
 
         /* 체크박스(#sidebar-switch) 뒤에 있는 사이드바(.sidebar) 디자인 */
@@ -36,15 +25,6 @@
             width: 250px;
             background-color: yellow;
             z-index: 99999;
-
-            /*
-                체크박스의 체크 여부에 따라서 현재 margin-left 이 변하고 있다.
-                = 애니메이션을 통해서 margin-left가 0.5초에 걸쳐서 변하도록 설정
-                = 타이밍 함수를 이용하여 애니메이션 템포 조절이 가능
-                    = linear : 일정한 변화
-                    = ease-in-out : 처음과 끝을 느리게 변화
-            */
-            transition: margin-left 2s ease-in-out;
         }
 
         /* 체크박스(#sidebar-switch) 체크 시 뒤에 있는 사이드바(.sidebar) 디자인 */
@@ -55,8 +35,6 @@
 </head>
 
 <body>
-    <!-- <label for="sidebar-switch" class="sidebar-button">&#9776;</label> -->
-    <label for="sidebar-switch" class="sidebar-button">&#8801;</label>
     <input type="checkbox" id="sidebar-switch">
     <div class="sidebar"></div>
 </body>

@@ -23,8 +23,12 @@
 
         }
 
-        #sidebar-switch {
-            display: none;
+        #sidebar-switch+.sidebar-button::before {
+            content: "<-";
+        }
+
+        #sidebar-switch:checked+.sidebar-button::before {
+            content: "->";
         }
 
         /* 체크박스(#sidebar-switch) 뒤에 있는 사이드바(.sidebar) 디자인 */
@@ -55,9 +59,8 @@
 </head>
 
 <body>
-    <!-- <label for="sidebar-switch" class="sidebar-button">&#9776;</label> -->
-    <label for="sidebar-switch" class="sidebar-button">&#8801;</label>
     <input type="checkbox" id="sidebar-switch">
+    <label for="sidebar-switch" class="sidebar-button"></label>
     <div class="sidebar"></div>
 </body>
 

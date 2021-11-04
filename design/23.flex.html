@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,37 +12,42 @@
             flex layout
             = display:flex; 를 통해 영역 내부의 요소를 float처럼 처리할 수 있다.
             = clear 처리가 필요하지 않다.
-            = 높이를 자동으로 맞춰준다
+            = 높이를 자동으로 맞춰준다.
             = 비율 설정을 지원(flex-grow)
+            = 배치 순서 변경을 지원(flex-direction)
         */
         .flex-container {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
         }
+
         .a {
-            background-color:tomato;
+            background-color: tomato;
             /* width: 20%; */
             flex-grow: 1;
         }
+
         .b {
-            background-color:moccasin;
+            background-color: moccasin;
             /* width: 30%; */
             flex-grow: 1;
         }
+
         .c {
-            background-color:lightskyblue;
+            background-color: lightskyblue;
             /* width: 50%; */
             flex-grow: 1;
         }
-        
     </style>
 
 </head>
+
 <body>
     <div class="flex-container">
-    <div class="a">a</div>
-    <div class="b">b</div>
-    <div class="c">c</div>
+        <div class="a">a</div>
+        <div class="b">b</div>
+        <div class="c">c</div>
     </div>
 </body>
+
 </html>
