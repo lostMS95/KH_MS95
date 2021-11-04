@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="commons.css">
+    <style>
+        /*
+            라벨에는 입력창 참조 설정이 가능하다.
+        */
+        .chk {
+            display: none;
+        }
+    .chk + label {
+        color: red;
+        transition:color 1s ease-in-out;
+    }
+    .chk:checked + label {
+        color: blue;
+    }
+    </style>
+
+</head>
+<body>
+    <input type="checkbox" class="chk" id="ck-1">
+    <label for="ck-1">1번 약관에 동의합니다</label>
+
+    <hr>
+   
+    <input type="checkbox" class="chk" id="ck-2">
+    <label for="ck-2">2번 약관에 동의합니다</label>
+
+    <hr>
+   
+    <input type="checkbox" class="chk" id="ck-3">
+    <label for="ck-3">3번 약관에 동의합니다</label>
+</body>
+</html>

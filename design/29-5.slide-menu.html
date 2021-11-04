@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>슬라이드 메뉴</title>
+    <link rel="stylesheet" type="text/css" href="commons.css">
+    <style>
+       /* 
+            list 스타일링
+            - list에는 항목을 표시하는 기호가 있음
+
+       */
+       .slide-menu , .slide-menu ul{
+           border: 1px dotted black;
+       }
+       .slide-menu, .slide-menu ul {
+           list-style:none;
+           margin: 0;
+           padding: 0;
+        }
+        .slide-menu {
+            display: flex;
+        }
+        .slide-menu > li {
+            width:150px;
+        }
+
+        
+
+        .slide-menu ul {
+           display: none;
+       }
+       .slide-menu > li:hover > ul {
+           display:block;
+           
+       } 
+       .slide-menu li {
+           position: relative;
+       }
+
+       .slide-menu ul {
+           position: absolute;
+           top:50px;
+           left:0;
+       }
+       .slide-menu li >a {
+           display: block;
+           width:100px;
+           text-decoration: none;
+           color: white;
+           padding: 0.75rem;
+       }
+       .slide-menu, .slide-menu ul {
+           background-color: black;
+           color: white;
+       }
+       .sldie-menu li:hover > a {
+           background-color:chartreuse;
+        .slide-menu li > a > ul
+       }
+       .slide-menu > li.flex-right {
+           margin-left:auto;
+           margin-right: 0;
+       }
+    </style>   
+</head>
+<body>
+    <ul class="slide-menu">
+        <li>
+            <a href="#">메뉴1</a>
+            <ul>
+                <li><a href="#">항목1</a></li>
+                <li><a href="#">항목2</a></li>
+                <li><a href="#">항목3</a></li>
+                <li><a href="#">항목4</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">메뉴2</a>
+            <ul>
+                <li><a href="#">항목1</a></li>
+                <li><a href="#">항목2</a></li>
+                <li><a href="#">항목3</a></li>
+                <li><a href="#">항목4</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">메뉴3</a>
+            <ul>
+                <li><a href="#">항목1</a></li>
+                <li><a href="#">항목2</a></li>
+                <li><a href="#">항목3</a></li>
+                <li><a href="#">항목4</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">메뉴4</a>
+            <ul>
+                <li><a href="#">항목1</a></li>
+                <li><a href="#">항목2</a></li>
+                <li><a href="#">항목3</a></li>
+                <li><a href="#">항목4</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
