@@ -10,17 +10,14 @@
 */
 * {
     box-sizing: border-box;
-    font-family: sans-serif;
+
 }
 
 /*
     모든 영역은 컨테이너를 만들면서 시작한다.
     자주 사용할 컨테이너를 크기별로 준비해둔다. (100px ~ 1000px)
 */
-div {
-    border: 1px dotted grey;
-    /*개발을 위한 테두리 속성 */
-}
+
 
 .container-100 {
     width: 100px
@@ -325,4 +322,81 @@ textarea.vertical {
 .flex-container {
     display: flex;
     flex-direction: row;
+}
+
+.slide-menu,
+.slide-menu ul {
+    /*(1)*/
+    list-style: none;
+}
+
+.slide-menu,
+.slide-menu ul,
+.slide-menu li {
+    /*(2)*/
+    padding: 0;
+    margin: 0;
+}
+
+.slide-menu {
+    /*(3)*/
+    display: flex;
+}
+
+.slide-menu>li {
+    /*(4)*/
+    width: 120px;
+}
+
+.slide-menu li {
+    /*(5)*/
+    /*absolute의 기준점 설정을 위하여 position 설정*/
+    position: relative;
+}
+
+.slide-menu ul {
+    /*(5)*/
+    position: absolute;
+    top: 45px;
+    left: 0;
+}
+
+.slide-menu li>a {
+    /*(6) */
+    display: block;
+    width: 120px;
+    text-decoration: none;
+    color: black;
+    padding: 0.75rem;
+}
+
+/*(7)*/
+.slide-menu,
+.slide-menu ul {
+    background-color: #EEEEEE;
+}
+
+.slide-menu li:hover>a {
+    background-color: #CCCCCC;
+    color: black;
+}
+
+/*(8)*/
+.slide-menu>li>ul ul {
+    top: 0;
+    left: 120px;
+}
+
+.slide-menu>li.flex-right {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+/* 모든 서브메뉴를 숨겼다가 마우스 올라가면 표시되도록 설정 */
+.slide-menu ul {
+    display: none;
+}
+
+.slide-menu li:hover>ul {
+    display: block;
 }

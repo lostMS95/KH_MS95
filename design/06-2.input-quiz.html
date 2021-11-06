@@ -6,34 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>검색창 만들기</title>
     <style>
-        .search-type {
+        /* 공통 스타일 */
+        .search{
             font-family:굴림;
             font-size:25px;
             padding:20px;
             border-width:3px;
             border-style:solid;
             border-color:green;
-            width:500px;
             border-radius:15px;
         }
+        /* 개별 스타일 */
+        .search-type {
+            width:500px;
+        }
         .search-btn {
-            font-family:굴림;
-            font-size:25px;
-            padding:20px;
-            border-width:1px;
-            border-style:solid;
-            border-color:green;
             background-color:green;
             color:white;           
-            border-radius:15px;
-            }
+        }
     </style>
 </head>
 <body>
     <form action="?" method="?">
-        <input type="text" placeholder="검색어 입력" required 
-        class="search-type"> 
-        <input type="submit" value="검색" class="search-btn">
+        <input type="text" placeholder="검색어 입력" required class="search search-type"> 
+        <input type="submit" value="검색" class="search search-btn">
     </form>
 </body>
 </html>                

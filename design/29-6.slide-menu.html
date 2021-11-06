@@ -51,7 +51,7 @@
         .slide-menu ul {
             /*(5)*/
             position: absolute;
-            top:55px;
+            top:45px;
             left: 0;
         }
 
@@ -69,7 +69,7 @@
         }
         .slide-menu li:hover > a {
             background-color:#CCCCCC;
-            color:red;
+            color:black;
         }
 
         .slide-menu > li.flex-right {
@@ -78,16 +78,11 @@
         }
 
         /* 모든 서브메뉴를 숨겼다가 마우스 올라가면 표시되도록 설정 */
-        .slide-menu {
-            background-color: yellow;
-        }
-
         .slide-menu ul {
-            display: none;
+            display:none;
         }
-
-        .slide-menu li:hover>ul {
-            display: block;
+        .slide-menu li:hover > ul {
+            display:block;
         }
     </style>
 </head>
@@ -122,7 +117,7 @@
                 <li><a href="#">항목4</a></li>
             </ul>
         </li>
-        <li>
+        <li class="flex-right">
             <a href="#">메뉴4</a>
             <ul>
                 <li><a href="#">항목1</a></li>
