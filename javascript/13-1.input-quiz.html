@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function calculate() {
+        var a = document.querySelector("#a");
+        var b = document.querySelector("#b");
+        var c = document.querySelector("#c");
+
+            
+        c.value = parseInt(a.value) * parseInt(b.value);
+        }
+    </script>
+   
+</head>
+<body>
+    <h2>상품 구매</h2>
+    <img src ="image/stussy.jpg">
+    <br>
+    사이즈 : 
+    <select id="a" oninput="calculate();">
+            <option value=20000>M(20000)</option>
+            <option value=25000>L(25000)</option>
+            <option value=30000>XL(30000)</option>
+    </select>
+    <br>
+    수량 : <input type="number" id ="b" value="1" oninput="calculate();">개
+    <br>
+    <button onclick="plus();">계산하기</button>
+    <br>
+    결제금액 : <input type="number" id="c">원
+</body>
+</html>

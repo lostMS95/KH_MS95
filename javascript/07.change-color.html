@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>글자 색상 바꾸기</title>
+    <script>
+        function red() {
+            //h1 태그를 "선택"하여 디자인을 변경
+            var tag = document.querySelector("#target");
+            console.log(tag);
+            
+            tag.style = "color:red;";
+        }
+    </script>
+</head>
+<body>
+    <button onclick="red();">빨강</button>
+    <h1 id="target">Hello Javascipt</h1>
+</body>
+</html>
