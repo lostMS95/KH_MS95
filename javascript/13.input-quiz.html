@@ -4,35 +4,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>상품 결제</title>
     <script>
-        function plus() {
-        var a = document.querySelector("#a");
-        var b = document.querySelector("#b");
-        var c = document.querySelector("#c");
-
+        function calculate() {
+        //준비 : #size, #qty, #total    
+        var size = document.querySelector("#size");//document.getElementById("size");
+        var qty = document.querySelector("#qty");//document.getElementById("qty");
+        var total = document.querySelector("#total");//document.getElementById("total");
             
-        c.value = parseInt(a.value) * parseInt(b.value);
+
+        if(qty.value != "") {
+                total.value = parseInt(size.value) * parseInt(qty.value);
+            }
+        else{
+                total.value = 0;
+            }
         }
     </script>
-   
 </head>
 <body>
     <h2>상품구매</h2>
-   
     <img src ="image/stussy.jpg">
-    <br>
-    사이즈 : <select id="a">
-            <option value=20000>M(20000)</option>
-            <option value=25000>L(25000)</option>
-            <option value=30000>XL(30000)</option>
+    <hr>
+    사이즈 : 
+    <select id="size">
+        <option value="20000">M (20000)</option>
+        <option value="25000">L (25000)</option>
+        <option value="30000">XL (30000)</option>
     </select>
     <br>
-    수량 : <input type="number" id ="b">개
+    수량 : <input type="number" id ="qty" value="1">
     <br>
-    <button onclick="plus();">계산하기</button>
+    <button onclick="calculate();">계산하기</button>
     <br>
-    결제금액 : <input type="number" id="c">원
-
+    결제금액 : <input type="number" id="total">
 </body>
 </html>
