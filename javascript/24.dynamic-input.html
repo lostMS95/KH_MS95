@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>현란한 입력창</title>
+    <link rel="stylesheet" type="text/css" href="./css/commons.css">
+    <style>
+        .success {
+            border:2px solid green;
+            background-image: url("./image/success.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position:right;
+        }
+        .fail {
+            border:2px solid red;
+            background-image: url("image/fail.jpg");
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position:right;
+            
+        }
+    </style>
+    <script>
+        function idcheck() {
+            var input = document.querySelector("input[name=memberId]");
+            var notice = input.nextElementSibling;
+            var regex = /^[a-z][a-z0-9-_]{7,19}$/;
+            
+            input.classList.remove("success","fail");
+            if(regex.test(input.value)){
+                input.classList.add("success");
+                
+            }
+            else{
+                input.classList.add("fail");
+               
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="row">
+        <input type="text" name="memberId" placeholder="아이디 입력" onblur="idcheck();">
+    </div>
+</body>
+</html>

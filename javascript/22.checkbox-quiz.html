@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="css/commons.css">
+    <script>
+        /*
+            checkbox는 onclick, oninput, onchange 모두 가능하지만
+            oninput이 가장 맞는 이벤트 형태
+            (구 버전에서는 onchange)
+        */
+        
+        function check() {
+            var list = document.querySelectorAll("#ck-box");
+            var ck = document.querySelector("#ck");
+
+            if(list.checked == true) {
+            for(var i =0; i <list.length; i++) {
+               list[i].checked = true;
+            } 
+            }
+            else {
+                for(var i =0; i <list.length; i++) {
+               list[i].checked = false;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class= "container-700 container-center">
+    <div class="row">
+    <input type="checkbox" onclick="check();">전체 선택
+    </div>
+    <hr>
+    <div class="row">
+    <input type="checkbox" id="ck-box">딸기
+    </div>
+    <br>
+    <div class="row">
+    <input type="checkbox" id="ck-box">홍시
+    </div>
+    <br>
+    <div class="row">
+    <input type="checkbox" id="ck-box">두리안
+    </div>
+    <br>
+    <div class="row">
+    <input type="checkbox" id="ck-box">오렌지
+    </div>
+    <br>
+    <div class="row">
+    <input type="checkbox" id="ck-box">망고
+    </div>
+    <br>
+    <div class="row">
+    <input type="checkbox" id="ck-box">파인애플</div>
+    </div>
+</body>
+</html>
