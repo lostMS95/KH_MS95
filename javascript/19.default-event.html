@@ -9,12 +9,14 @@
         function formCheck() {
             
             var keywordInput = document.querySelector("input[name=keyword]");
-            if(keywordInput.value.length ==0){
+            if(keywordInput.value.length ==0){//입력이 안되어 있다면
                 //원하는 코드 추가(메세지 출력,알림창 출력, ...)
                 window.alert("검색어를 작성하세요");
                 keywordInput.focus();
                 return false;
             }
+            
+            //return true;
         }
     </script>
 </head>
@@ -24,8 +26,7 @@
         = 따라서 상황에 맞게 이를 허용(return true)하거나 차단(return false) 처리를 할 수 있어야 한다
         = 검사 함수를 만들고 필요한 검사를 수행한 뒤 합격하면 허용하는 방법으로 처리한다.
     -->
-
-    <form action="" method="get" onsubmit="return formCheck();">
+    <form action="https://www.google.com" method="get" onsubmit="return formCheck();">
         <input type="text" name="keyword">
         <input type="submit" value="전송"">
     </form>
