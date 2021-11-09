@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>기본 내장 객체</title>
     <script>
-        /*
-            모든 언어에는 각자의 내장 객체가 존재하며,
+         /*
+            모든 언어에는 각자의 내장 객체가 존재하며, 주로 자주 사용하는 기능들을 처리하는 역할 수행
+            자바스크립트는 브라우저에 종속된 언어이기 때문에 브라우저를 제어하는 기능들이 필요하다.
+            - window : 브라우저 창을 의미하는 최상위 객체(window라는 단어를 쓰지 않아도 된다)
         */
        function windowTest1() {
             window.alert("알림창 테스트");
@@ -28,6 +30,7 @@
                window.alert("안녕!");
            }, 2000);
        }
+       
        function locationTest1() {
            //console.log(window.location);
            //console.log(location);
@@ -46,14 +49,15 @@
             history.back();
        }
        function documentTest1() {
-           //태그를 선택하는 다양한 방법(이름, 아이디, 클래스)
-           //구버전 : 명령이 전부 다 다르다.
-           //var tag = document.getElementById("hello");
-           //var tag = document.getElementsByTagName("h1")[0];
-           
-           //신버전 : css 선택자 사용 및 명령 통합 일부 구버전 브라우저에서 작동하지 않는다.
-        //    var tag = document.querySelector("#hello");
-        //    var tag = document.querySelector("h1");
+            //태그를 선택하는 다양한 방법 (이름, 아이디, 클래스)
+            //구버전 : 명령이 전부 다 다르다. 모든 브라우저에서 작동한다.
+            //var tag = document.getElementById("hello");
+            //var tag = document.getElementsByTagName("h1")[0];
+            //var tag = document.getElementsByClassName("test")[0];
+
+            //신버전 : css 선택자 사용 및 명령 통합. 일부 구버전 브라우저에서 작동하지 않는다.
+            //var tag = document.querySelector("#hello");
+            //var tag = document.querySelector("h1");
            var tag = document.querySelector(".test");
            tag.style.color = "red";
            
@@ -61,7 +65,7 @@
            console.log(list);
 
            for(var i=0; i<list.length; i++) {
-           list[i].style.color = "blue";
+                 list[i].style.color = "blue";
             }
            
         }
