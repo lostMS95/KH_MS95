@@ -5,22 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>독립형 모듈에서의 기본 이벤트 처리</title>
+    <script src="./confirm-link.js"></script>
     <script>
-        window.addEventListener("load",function(){
-            document.querySelector(".confirm-link").addEventListener("click",function(e){
-                
-                
-                var choice = confirm("정말 이동하시겠습니까?");
-                if(!choice){
-                    e.preventDefault();
-                }
-            });
-        });
+       
     </script>
 </head>
 <body>
     <a href="https://www.google.com">구글로 이동</a>
     <hr>
     <a href="https://www.google.com" class="confirm-link">구글로 이동</a>
+    <hr>
+    <a href="https://www.naver.com" class="confirm-link">네이버로 이동</a>
+    <hr>
+    <a href="https://www.instagram.com" class="confirm-link">인스타그램으로 이동</a>
 </body>
 </html>
