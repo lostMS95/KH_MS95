@@ -6,41 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
-        function KHQuery(selector) {
-            //제어 대상을 선택해야 한다.
-            var list =document.querySelectorAll(selector);
-            
-            return {
-                color:function(value){
-                for(var i =0; i <list.length; i++) 
-                list[i].style.color = value;
-                }
-            };
-            
-        }
-        
-    
-            function color(selector, value) {
-            var list =document.querySelectorAll(selector);
-            for(var i =0; i <list.length; i++) {
-                list[i].style.color = value;
+        //순수 자바스크립트(pure javascript, vanillaJS)의 문제점
+        //- 코드가 너무 길다
+        //- 센스가 없다(고지식하다) : 한 개일 때와 여러 개일 때의 코드 온도차가 너무 심하다.
+        window.addEventListener("load", function(){
+            var list = document.querySelectorAll("h1");
+            for(var i=0; i < list.length; i++){
+                list[i].style.color = "red";
             }
-        }
-        function bgcolor(selector, value) {
-            var list =document.querySelectorAll(selector);
-            for(var i =0; i <list.length; i++) {
-                list[i].style.backgroundColor = value;
-            }
-        }
-        
-        
-        
-        
-        window.addEventListener("load",function(){
-            var kh = KHQuery("h1");
-            console.log(kh);
-            kh.color("red")
-            
         });
     </script>
 </head>
@@ -50,7 +23,5 @@
     <h1>Hello KHQuery</h1>
     <h1>Hello KHQuery</h1>
     <h1>Hello KHQuery</h1>
-    <h1>Hello KHQuery</h1>
-    
 </body>
 </html>
