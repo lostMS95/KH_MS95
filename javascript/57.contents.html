@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="commons.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script>
+        $(function(){
+            $(".list2").hide()
+            $(".list").click(function(e){
+                e.preventDefault();
+                $(".list2").show();
+            });
+        });
+    </script>
+</head>
+<body>
+    <form>
+        <ul>
+            <li>
+                <button class="list">1.자바</button>
+                <ul class="list2">
+                    <li>(1) 변수</li>
+                    <li>(2) 입출력</li>
+                    <li>(3) 조건</li>
+                    <li>(4) 반복</li>
+                </ul>
+            </li>
+            <li>
+                <button class="list">2.데이터베이스</button>
+                <ul class="list2">
+                    <li>(1) 사용자</li>
+                    <li>(2) 테이블</li>
+                    <li>(3) 데이터</li>
+                </ul>
+            </li>
+        </ul>
+    </form>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트의 실행 시점</title>
+</head>
+<body>
+    <!--
+        (Q)
+        화면을 만들 때는 HTML + CSS +JS를 사용하여 만들어야 한다.
+        서로 다른 언어를 섞어서 만들 때 실행하는 순서는 어떻게 될까?
+        (ex) HTML먼저 or CSS먼저 or JS먼저 or 작성한 순서대로 or...
+    -->
+</body>
+
+    <script>
+        window.alert("before");
+    </script>
+
+    <h1>HTML코드</h1>
+
+    <script>
+        window.alert("after");
+    </script>
+</html>

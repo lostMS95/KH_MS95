@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function KHQuery(selector) {
+            //제어 대상을 선택해야 한다.
+            var list =document.querySelectorAll(selector);
+            
+            return {
+                color:function(value){
+                for(var i =0; i <list.length; i++) 
+                list[i].style.color = value;
+                }
+            };
+            
+        }
+        
+    
+            function color(selector, value) {
+            var list =document.querySelectorAll(selector);
+            for(var i =0; i <list.length; i++) {
+                list[i].style.color = value;
+            }
+        }
+        function bgcolor(selector, value) {
+            var list =document.querySelectorAll(selector);
+            for(var i =0; i <list.length; i++) {
+                list[i].style.backgroundColor = value;
+            }
+        }
+        
+        
+        
+        
+        window.addEventListener("load",function(){
+            var kh = KHQuery("h1");
+            console.log(kh);
+            kh.color("red")
+            
+        });
+    </script>
+</head>
+<body>
+    <h1>Hello KHQuery</h1>
+    <h1>Hello KHQuery</h1>
+    <h1>Hello KHQuery</h1>
+    <h1>Hello KHQuery</h1>
+    <h1>Hello KHQuery</h1>
+    <h1>Hello KHQuery</h1>
+    
+</body>
+</html>

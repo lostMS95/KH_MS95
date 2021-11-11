@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객체 제어</title>
+    <script>
+        /* 
+        자바스크립트느 클래스(Class)가 없다(ECMAScript5 기준)
+        = 클래스가 없으면 객체가 없나? 그렇지 않다.
+        = 만드는 방식은 2가지
+            1. 일회성 객체
+            2. 생성자 함수를 이용한 객체
+        */
+        var a = {name:"피카츄",score:90};
+        var b = {name:"라이츄",score:70};
+        var c = {name:"파이리",score:80};
+        var d = {name:"아이폰130",price:2000000};
+
+        a.gender ="여자";
+
+        console.log(a);
+        console.log(b);
+        console.log(c);
+        console.log(d);
+
+        function Student(name, score) {
+            this.name = name;
+            this.score = score;
+        }
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

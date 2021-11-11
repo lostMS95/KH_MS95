@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="css/commons.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script>
+        $(function(){
+            $("#answer").on("input",function(){
+                $("#answer-length").text($(this).val().length);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container-700 container-center">
+        <div class="row center">
+            <h1>자기소개서</h1>
+        </div>
+        <div class="row">
+            <h2>(Q)본인 성격의 장/단점을 기술하시오.</h2>
+        </div>
+        <div class="row">
+            <textarea id="answer" rows="10" class="form-input"></textarea>
+        </div>
+        <div class="row right">
+            <span id="answer-length">0</span> / 1000
+        </div>
+    </div>
+</body>
+</html>

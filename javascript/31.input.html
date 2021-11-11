@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.addEventListener("load",function() {
+            document.querySelector(".calculate-btn").addEventListener("click",function() {
+            
+            var a = document.querySelector("#a");//document.getElementById("a");
+            var b = document.querySelector("#b");//document.getElementById("b");
+            var c = document.querySelector("#c");//document.getElementById("c");
+            
+            c.value = parseInt(a.value) + parseInt(b.value);
+        });
+        });
+    </script>
+</head>
+<body>
+    <input type="number" id="a">
+    +
+    <input type="number" id="b">
+    <button class="calculate-btn">=</button>
+    <input type="number" id="c">
+</body>
+</html>
