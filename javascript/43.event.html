@@ -4,31 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>jQuery 이벤트</title>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script>
-       $(function(){
-             $("button").eq(0).click(function(){
-                $("#target").css("color","red");
-            });
-            $("button").eq(1).click(function(){
-                $("#target").css("color","blue");
-            });
-            $("button").eq(2).click(function(){
-                $("#target").css("background-color","yellow");
-            });
-            $("button").eq(3).click(function(){
-                $("#target").css("border","1px solid black");
+        $(function(){
+            //VanillaJS
+            //document.querySelector("h1").addEventListener("click", function(){});
+
+            //jQuery : on으로 설정하되 주요 이벤트는 약식 명령이 존재(input 제외)
+            //$("h1").on("click", function(){});
+            $("h1").click(function(){
+                //$("h1").css("color", "red");//잘못된 코드 - 전체 다 빨개짐(jQuery)
+                $(this).css("color", "red");//정확한 코드 - 주인공만 빨개짐(jQuery)
+
+                //this.style.color = "red";//동일한 코드(VanillaJS)
             });
         });
-        
     </script>
 </head>
 <body>
-    <h1 id="target">과정평가형 자격증 취득반 화이팅!</h1>
-    <button>글자 빨강</button>
-    <button>글자 파랑</button>
-    <button>배경 노랑</button>
-    <button>테두리 검정</button>
+    <h1>Hello jQuery</h1>
+    <h1>Hello jQuery</h1>
+    <h1>Hello jQuery</h1>
+    <h1>Hello jQuery</h1>
+    <h1>Hello jQuery</h1>
 </body>
 </html>
