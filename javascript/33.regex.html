@@ -7,14 +7,16 @@
     <title>정규표현식</title>
     <script>
         window.addEventListener("load",function(){
+              //목표 : 닉네임 입력창 형식검사
             document.querySelector("input[name=memberNick]").addEventListener("input",function() {
+                 //this == 닉네임 입력창
                 var nicknameSpan = this.nextElementSibling;
                 var regex = /^[가-힣]{2,10}$/;
                 var isCorrect = regex.test(this.value);
-            if(isCorrect){
+            if(isCorrect){//검사 성공
                 nicknameSpan.textContent = "올바른 닉네임 형식입니다";
             }
-            else{
+            else{//검사 실패
                 nicknameSpan.textContent = "닉네임은 한글 2~10자 이내로 작성하세요";
             }
 

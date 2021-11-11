@@ -12,20 +12,13 @@
     </style>
     <script>
         window.addEventListener("load",function(){
+            //목표 : 전체선택 체크박스를 클릭할 경우 모든 하위 체크박스가 체크 또는 해제되도록 구현
             document.querySelector(".check-all").addEventListener("input",function(){
+                //this == .check-all
                 var checkboxList = document.querySelectorAll("input[type=checkbox]:not(.check-all)");
-                
-                if(this.checked == true){
                 for(var i=0; i < checkboxList.length; i++){
-                    checkboxList[i].checked = true;
+                    checkboxList[i].checked = this.checked;
                 }
-            }
-            else{
-                for(var i=0; i < checkboxList.length; i++){
-                    checkboxList[i].checked = false;
-                }
-            }
-
             });
         });
     </script>
