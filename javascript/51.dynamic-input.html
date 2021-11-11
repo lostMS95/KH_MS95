@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>현란한 입력창</title>
     <link rel="stylesheet" type="text/css" href="./css/commons.css">
     <style>
         .form-input {
             outline: none;
             background-repeat: no-repeat;   /* 배경이 반복되는 것을 방지 */
-            background-size: contain;            /* 배경의 크기를 작은 쪽에 맞춤 */
-            background-position: right;         /* 배경을 오른쪽으로 붙임 */
+            background-size: contain;       /* 배경의 크기를 작은 쪽에 맞춤 */
+            background-position: right;     /* 배경을 오른쪽으로 붙임 */
             
             /* 입력창에 더 맞도록 사이즈, 위치 재정의 */
             background-size: 25px;                 
@@ -40,7 +40,6 @@
             display: block;
         }
     </style>
-    
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script>
         $(function(){
@@ -48,12 +47,11 @@
             var regex = /^[a-z][a-z0-9]{7,19}$/;
             var id = $(this).val();
             
-            $("input[name=memberId]").removeClass("success, fail");
-           
-            if(regex.test(id)){
+            $(this).removeClass("success").removeClass("fail");
+            if(regex.test(id)){//원하는 형식
                 $("input[name=memberId]").addClass("success");
             }
-            else {
+            else {//원치않는 형식
                 $("input[name=memberId]").addClass("fail");
             }
            });
