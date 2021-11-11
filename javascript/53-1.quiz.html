@@ -12,22 +12,21 @@
             //[1] 체크된 항목의 체크여부를 가려 추가 또는 삭제 후 출력
             //[2] 전체 체크항목을 계산하여 출력
 
-            var selectedItem = [];
-
             $(".check-item").on("input", function(){
-                //this == 이벤트가 발생한 체크박스(.check-item)
-                var name = $(this).next().text();
+                //this == 체크된 체크박스
+                var selectedItem = [];
 
-                var index = selectedItem.indexOf(name);
-                if(index >= 0){
-                    selectedItem.splice(index, 1);
-                }
-                else{
-                    selectedItem.push(name);
-                }
+                $(".check-item").each(function(){
+                    //this == 현재 차례의 체크박스
+                    if($(this).prop("checked")){
+                        var name = $(this).next().text();
+                        selectedItem.push(name);
+                    }
+                });
+
                 //console.log(selectedItem);
-
                 $(".result > span").text(selectedItem);
+                
             });
         });
     </script>
