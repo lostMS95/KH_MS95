@@ -14,7 +14,7 @@
         //2. jQuery에서는 이벤트 객체(e)를 이용한 방지 명령이 가능
         $(function(){
             $(".confirm-link").click(function(){
-                return false;
+                return confirm("정말 이동하시겠습니까?");
             });
         });
     </script>
