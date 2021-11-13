@@ -26,46 +26,22 @@
 
 		//버튼을 누르면 해당 지역으로 이동하도록 처리
 		$(".btn-move").click(function(){
-			//var lat = $(this).attr("data-lat");
-			var lat = $(this).data("lat");
-			//var lng = $(this).attr("data-lng");
-			var lng = $(this).data("lng");
-
-			var location = new kakao.maps.LatLng(lat,lng);
-			map.setCenter(location);
-		});
-		
-		
-		$(".btn-seoul").click(function(){
-			var location = new kakao.maps.LatLng(37.566668, 126.977629);
-			
-			map.setCenter(location);
-			//map.panTo(location);
-		});
-		$(".btn-busan").click(function(){
-			var location = new kakao.maps.LatLng(35.137922, 129.055627);
-			
-			map.setCenter(location);
-			//map.panTo(location);
-		});
-		$(".btn-incheon").click(function(){
-			var location = new kakao.maps.LatLng(37.456906, 126.705958);
-			
-			map.setCenter(location);
-			//map.panTo(location);
-		});
-	});
-		
+				//var lat = $(this).attr("data-lat");
+				var lat = $(this).data("lat");
+				//var lng = $(this).attr("data-lng");
+				var lng = $(this).data("lng");
+				var location = new kakao.maps.LatLng(lat, lng);
+				map.setCenter(location);
+			});
+		}); 
 	</script>
 </head>
 <body>
+	<!-- 팁 : 태그에 정보를 보관해야 할 경우 data- 로 시작하는 속성을 만들어 저장할 것을 권장 -->
 	<button class="btn-move" data-lat="37.566668" data-lng="126.977629">서울</button>
-	<button class="btn-move" data-lat="35.137922" data-lng="129.055627">부산</button>
+	<button class="btn-move" data-lat="35.180716" data-lng="129.074935">부산</button>
 	<button class="btn-move" data-lat="37.456906" data-lng="126.705958">인천</button>
-	<button class="btn-move" data-lat="37.456906" data-lng="126.705958">대전</button>
-	<button>+</button>
-	<button>-</button>
+	<button class="btn-move" data-lat="36.351251" data-lng="127.384818">대전</button>
 	<div id="map"></div>
-	
 </body>
 </html>

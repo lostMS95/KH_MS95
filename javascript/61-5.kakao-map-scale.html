@@ -3,11 +3,10 @@
 <head>
 	<meta charset="utf-8"/>
 	<title>Kakao 지도 시작하기</title>
-
 	<style>
 		#map {
-			width:500px;
-			height:400px;
+			width: 500px;
+			height: 400px;
 		}
 	</style>
 	
@@ -18,15 +17,16 @@
 			//지도 생성 준비 코드
 			var container = document.querySelector("#map");
 			var options = {
-				center: new kakao.maps.LatLng(33.450701, 126.570667),
-				level: 3
-			};
+			center: new kakao.maps.LatLng(33.450701, 126.570667),
+			level: 3
+		};
 
-			//지도 생성 코드
-			var map = new kakao.maps.Map(container, options);
+		//지도 생성 코드
+		var map = new kakao.maps.Map(container, options); 
 
-			//첫 생성 시 필요하다면 확대/축소/이동 금지 처리
-			map.setDraggable(false);
+
+		//첫 생성 시 필요하다면 확대/축소/이동 금지 처리
+		map.setDraggable(false);
 			map.setZoomable(false);
 
 			//버튼을 누르면 해당 지역으로 이동하도록 처리
@@ -37,12 +37,6 @@
 				var lng = $(this).data("lng");
 				var location = new kakao.maps.LatLng(lat, lng);
 				map.setCenter(location);
-
-				//마커 추가 코드(위치 : location)
-				var marker = new kakao.maps.Marker({
-					position:location
-				});
-				marker.setMap(map);
 			});
 
 			$(".btn-level-increase").click(function(){

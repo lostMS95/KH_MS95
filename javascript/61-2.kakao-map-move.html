@@ -23,11 +23,28 @@
 
 		//지도 생성 코드
 		var map = new kakao.maps.Map(container, options); 
-	});
-		
+
+		//버튼을 누르면 해당 지역으로 이동하도록 처리
+		$(".btn-seoul").click(function(){
+				var location = new kakao.maps.LatLng(37.566668, 126.977629);
+				map.setCenter(location);
+				//map.panTo(location);
+			});
+			$(".btn-incheon").click(function(){
+				var location = new kakao.maps.LatLng(37.456906, 126.705958);
+				map.setCenter(location);
+			});
+			$(".btn-busan").click(function(){
+				var location = new kakao.maps.LatLng(35.180716, 129.074935);
+				map.setCenter(location);
+			});
+		});
 	</script>
 </head>
 <body>
+	<button class="btn-seoul">서울</button>
+	<button class="btn-busan">부산</button>
+	<button class="btn-incheon">인천</button>
 	<div id="map"></div>
 </body>
 </html>
