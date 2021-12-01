@@ -22,11 +22,8 @@ public class LottoController implements Controller{
 		while(set.size() < 6) {
 			set.add(r.nextInt(45)+1);
 		}
+		mv.addObject("lotto", set);
 		
-		for(int n : set) {
-			mv.addObject("lotto", n);
-			System.out.println(n);
-		}
 		mv.setViewName("/WEB-INF/views/lotto.jsp");
 		return mv;
 	}
