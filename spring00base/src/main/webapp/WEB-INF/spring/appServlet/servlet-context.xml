@@ -39,6 +39,6 @@
 		= annotation-driven 설정을 해야 annotation이 활성화된다
 	-->
 	<mvc:annotation-driven></mvc:annotation-driven>
-	<context:component-scan base-package="여기도 안바꾸면 바보"></context:component-scan>
+	<context:component-scan base-package="com.kh.spring10"></context:component-scan>
 	
 </beans>
