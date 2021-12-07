@@ -140,12 +140,23 @@
 			<version>1.2</version>
 		</dependency>
 	
-		<!-- Test -->
+		<!-- 
+			테스트를 위한 의존성 추가
+			-junit : 자바의 독립적인 테스트 프레임워크
+			-spring-test : junit 등을 spring에 맞게 사용할 수 있도록 도와주는 어댑터 의존성
+		 -->
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.7</version>
-			<scope>test</scope>
+    		<groupId>junit</groupId>
+    		<artifactId>junit</artifactId>
+    		<version>4.13.2</version>
+    		<scope>test</scope>
+		</dependency>   
+		
+		<dependency>
+    		<groupId>org.springframework</groupId>
+    		<artifactId>spring-test</artifactId>
+   		 	<version>${org.springframework-version}</version>
+    		<scope>test</scope>
 		</dependency>   
 		
 		<!-- 데이터베이스 사용 관련 의존성 -->
