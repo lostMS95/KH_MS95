@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -216,4 +217,19 @@ public class MemberController {
 				.contentLength(memberProfileDto.getMemberProfileSize())
 			.body(resource);
 		}
+	
+	/**
+	 * 현재 컨트롤러에서 발생하는 예외를 처리하는 핸들러 매핑
+	 * try {
+	 * 		현재 컨트롤러의 모든 메소드들
+	 * }
+	 * catch(Exception e){
+	 * 		이곳의 내용을 작성하는 느낌...
+	 * }
+	 */
+//	@ExceptionHandler(Exception.class)
+//	public String handler(Exception e) {
+//		//로그(logging) 생성 또는 기타 처리 추가
+//		return "error/500";
+//	}
 }

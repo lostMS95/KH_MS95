@@ -34,65 +34,13 @@
 		= 특정 지점(base-package)을 설정하여 해당 지점에 있는 모든 요소를 탐색하여 등록한다
 		= spring-context 모듈의 설정
 		= 제외하고 싶은 내용은 exclude-filter, 추가하고 싶은 내용은 include-filter 를 사용
-		= 자동일 경우는 제외나 추가가 안된다.
 		= 어노테이션 설정이 된 파일들을 탐색하여 자동으로 이 파일에 등록 처리
-		= @Controller , @RestController , @Service , @Component , @Repository , ....
 		= annotation-driven 설정을 해야 annotation이 활성화된다
 	 -->
 	<mvc:annotation-driven></mvc:annotation-driven>
-	<context:component-scan base-package="com.kh.spring15"></context:component-scan>
-	
-	<!-- 
-		데이터베이스 관련 도구 등록
-		- DriverManagerDataSource : 일반 연결 생성 도구(매번 신규 생성)
-		- BasicDataSource : DBCP 연결 생성 도구(연결 후 렌탈 방식)
-		- JdbcTemplate : 명령 실행 도구
-	 -->
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="oracle.jdbc.OracleDriver"></property>
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
-		<property name="username" value="kh"></property>
-		<property name="password" value="kh"></property>
-	</bean>
-	
-	<bean id="dbcpSource" class="org.apache.commons.dbcp2.BasicDataSource">
-		<property name="driverClassName" value="oracle.jdbc.OracleDriver"></property>
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
-		<property name="username" value="kh"></property>
-		<property name="password" value="kh"></property>
-		
-		<property name="maxTotal" value="20"></property>
-		<property name="maxIdle" value="5"></property>
-		<property name="minIdle" value="0"></property>
-		<property name="maxWaitMillis" value="3000"></property>
-	</bean>
-	
-	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-		<!-- database 연결 도구를 주입(DI) 한다 -->
-		<property name="dataSource" ref="dbcpSource"></property>
-	</bean>
-	
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<!-- 데이터베이스 연결 방식을 지정 -->
-		<property name="dataSource" ref="dbcpSource"></property>
-		<!-- 
-			중앙 설정 파일 경로를 지정
-			- classpath : src의 최상위부터 시작하는 경로
-			- filepath : 프로젝트의 최상위부터 시작하는 경로 
-		-->
-		<property name="configLocation" value="classpath:/mybatis/mybatis-config.xml"></property>
-		<!-- 
-			매퍼 파일 경로를 지정(패턴)
-			- 와일드카드를 2개 연속 사용하면 해당 경로 내부 어디든 관계없다는 의미
-			- 와일드카드를 1개 사용하면 바로 하위 폴더 또는 텍스트를 의미 
-		-->
-		<property name="mapperLocations" value="classpath:/mybatis/mapper/**/*-mapper.xml"></property>
-	</bean>
-	
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
-		<!-- 마이바티스 중앙 제어 장치의 정보를 "반드시" 가져야 하도록 설정(생성자) -->
-		<constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
-	</bean>
+	<context:component-scan base-package="com.kh.spring15" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
 	
 	<!-- 
 		DispatcherServlet에서 처리하지 말아야 할 요청을 설정
@@ -101,9 +49,6 @@
 		= 원하는 주소를 특정 위치로 연결할 수 있다.
 	-->
 	<mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
-	
-	<!-- 암호화를 위한 Encoder 등록 -->
-	<bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
 	
 	<!-- 
 		파일 업로드(multipart) 방식 요청을 처리할 수 있는 도구를 등록
@@ -115,5 +60,33 @@
 		<property name="maxUploadSizePerFile" value="1000000"></property>
 		<property name="maxUploadSize" value="10000000"></property>
 	</bean>
+	
+	<!-- 
+		인터셉터(Interceptor) 등록
+		- mvc:mapping에 가로챌 주소를 지정(여러 개 작성 가능)
+		- mvc:exclude-mapping에 제외할 주소를 지정(여러 개 작성 가능)
+		- bean에 처리할 인터셉터 클래스 객체를 지정
+		- Spring 표현식을 사용하여 주소 패턴을 지정(*, ** 구분)
+	 -->
+	<mvc:interceptors>
+		<!-- TestInterceptor에 대한 등록 처리 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean class="com.kh.spring15.interceptor.TestInterceptor"></bean>
+		</mvc:interceptor>
 		
+		<!-- MemberInterceptor에 대한 등록 처리 -->
+		
+		<!-- <mvc:interceptor>
+			<mvc:mapping path="/member/**"/>
+			<mvc:mapping path="/point/**"/>
+			<mvc:mapping path="/board/**"/>
+			<mvc:exclude-mapping path="/member/join"/>
+			<mvc:exclude-mapping path="/member/join_success"/>
+			<mvc:exclude-mapping path="/member/login"/>
+			<bean class="com.kh.spring15.interceptor.MemberInterceptor"></bean>
+		</mvc:interceptor> -->
+		
+	</mvc:interceptors>
+	
 </beans>
