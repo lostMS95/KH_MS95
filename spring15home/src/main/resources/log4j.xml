@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+	로깅(Logging)
+	- 메세지를 남기는 행위
+	- log4j는 로깅을 수행하는 도구 중 하나
+	
+	로깅 메세지 수준(Level)
+	- 중요한 메세지와 덜 중요한 메세지를 구분해서 출력 및 저장하도록 설계되어 있다.
+	- 총 6개의 단계가 존재 : (↑)FATAL - ERROR - WARN - INFO - DEBUG - TRACE(↓)
+ -->
+
 <!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
 
@@ -10,31 +21,9 @@
 		</layout>
 	</appender>
 	
-	<!-- Application Loggers -->
-	<logger name="com.kh.spring15">
-		<level value="info" />
-	</logger>
-	
-	<!-- 3rdparty Loggers -->
-	<logger name="org.springframework.core">
-		<level value="info" />
-	</logger>
-	
-	<logger name="org.springframework.beans">
-		<level value="info" />
-	</logger>
-	
-	<logger name="org.springframework.context">
-		<level value="info" />
-	</logger>
-
-	<logger name="org.springframework.web">
-		<level value="info" />
-	</logger>
-
 	<!-- Root Logger -->
 	<root>
-		<priority value="warn" />
+		<priority value="info" />
 		<appender-ref ref="console" />
 	</root>
 	
