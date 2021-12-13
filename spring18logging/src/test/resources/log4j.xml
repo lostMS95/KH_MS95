@@ -53,10 +53,10 @@
 	<appender name="file" class="org.apache.log4j.FileAppender">
 	
 		<!-- 상대경로는 프로젝트부터 시작한다(폴더가 없으면 생성한다) -->
-		<param name="file" value="log/out3.log"></param>
+		<param name="file" value="log/out.log"></param>
 		
 		<!-- 절대경로로 지정할 수도 있다 -->
-		<!-- <param name="file" value="D:/out.log"></param> -->
+		<!--  <param name="file" value="D:/out.log"></param> -->
 		
 		<!-- 덮어쓰기 / 이어쓰기 설정 -->
 		<param name="append" value="true"></param>
