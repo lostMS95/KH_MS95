@@ -35,6 +35,7 @@
 		= spring-context 모듈의 설정
 		= 제외하고 싶은 내용은 exclude-filter, 추가하고 싶은 내용은 include-filter 를 사용
 		= 어노테이션 설정이 된 파일들을 탐색하여 자동으로 이 파일에 등록 처리
+		= @Controller , @RestController
 		= annotation-driven 설정을 해야 annotation이 활성화된다
 	 -->
 	<mvc:annotation-driven></mvc:annotation-driven>
@@ -47,8 +48,8 @@
 		= 이미지, 음악, CSS, Javascript 파일 등은 정적 파일이므로 굳이 컨트롤러를 거칠 필요가 없음
 		= location은 실제 위치를 지정하고 mapping은 주소의 패턴을 지정한다
 		= 원하는 주소를 특정 위치로 연결할 수 있다.
-	-->
-	<mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
+	 -->
+ 	<mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
 	
 	<!-- 
 		파일 업로드(multipart) 방식 요청을 처리할 수 있는 도구를 등록
@@ -76,17 +77,15 @@
 		</mvc:interceptor>
 		
 		<!-- MemberInterceptor에 대한 등록 처리 -->
-		
-		<!-- <mvc:interceptor>
-			<mvc:mapping path="/member/**"/>
-			<mvc:mapping path="/point/**"/>
-			<mvc:mapping path="/board/**"/>
-			<mvc:exclude-mapping path="/member/join"/>
-			<mvc:exclude-mapping path="/member/join_success"/>
-			<mvc:exclude-mapping path="/member/login"/>
-			<bean class="com.kh.spring15.interceptor.MemberInterceptor"></bean>
-		</mvc:interceptor> -->
-		
+<!-- 		<mvc:interceptor> -->
+<!-- 			<mvc:mapping path="/member/**"/> -->
+<!-- 			<mvc:mapping path="/point/**"/> -->
+<!-- 			<mvc:mapping path="/board/**"/> -->
+<!-- 			<mvc:exclude-mapping path="/member/join"/> -->
+<!-- 			<mvc:exclude-mapping path="/member/join_success"/> -->
+<!-- 			<mvc:exclude-mapping path="/member/login"/> -->
+<!-- 			<bean class="com.kh.spring15.interceptor.MemberInterceptor"></bean> -->
+<!-- 		</mvc:interceptor> -->
 	</mvc:interceptors>
 	
 </beans>
