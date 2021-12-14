@@ -15,7 +15,64 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="certification">
+	
+	<!-- 
+		get을 통한 발송 여부 확인 후 insert 또는 update를 수행
+	 -->
+	
 	<insert id="insert" parameterType="certificationDto">
 		insert into certification values(#{email},#{serial},sysdate)
 	</insert>
+	
+	<select id="get" parameterType="String" resultType="CertificationDto">
+		select * from certification where email = #{email}
+	</select>
+	
+	<update id="update" parameterType="CertificationDto">
+		update certification
+		set serial = #{serial} , when = sysdate
+		where email = #{email}
+	</update>
+	
+	<!-- 
+		올인원 구문 : 검사해서 있으면 update, 없으면 insert(MERGE INTO 구문)
+		merge into certification C (certification을 C라고 부르고 여기에 병합을 하겠다)
+			using dual (다른 테이블은 사용하지 않는다. 있으면 dual 자리에 적는다)
+			on (C.email = #{email}) (이메일이 사용자가 입력한 것과 같은 항목이 있는지 찾아라)
+		when matched then (on에 작성한 조건에 매칭되는 값을 찾았다면)
+			update ... (update를 수행하라)
+		when not matched then (on에 작성한 조건에 매칭되는 값을 찾지 못했다면)
+			insert ... (insert를 수행하라)
+	-->
+	 <insert id="allInOneInsert" parameterType="CertificationDto">
+	 	merge into certification C using dual on (C.email = #{email})
+	 	when matched then
+	 	update set serial = #{serial}, when = sysdate
+	 	when not matched then
+	 	insert(email,serial,when) values(#{email},#{serial},sysdate)
+	 </insert>
+	 
+	 <!-- 인증번호 검사(5분 이내) -->
+	 <select id="check" parameterType="CertificationDto" resultType="CertificationDto">
+	 	select * from certification
+	 	where
+	 	email = #{email} and serial = #{serial}
+	 	<!-- 인증시간 관련 조건 -->
+	 	and
+	 	<![CDATA[
+	 	sysdate - when <= 5/24/60
+	 	]]>
+	 </select>
+	 
+	 <!-- 인증 성공 시 인증번호를 삭제하는 구문 -->
+	 <delete id="delete" parameterType="String">
+	 	delete certification where email = #{email}
+	 </delete>
+	 
+	 <delete id="clean">
+		 <![CDATA[
+	 	delete certification where sysdate - when > 5/24/60;
+	 	]]>
+	 </delete>
+	
 </mapper>
