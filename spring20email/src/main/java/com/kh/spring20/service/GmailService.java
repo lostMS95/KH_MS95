@@ -23,14 +23,17 @@ public class GmailService implements EmailService{
 
 	@Override
 	public void sendCertificationNumber(String to) {
+		//랜덤번호 생성 부분
 		String number = randomUtil.generateRandomNumber(6);
 		
+		//실제 이메일 발송 부분
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setTo(to);
 		message.setSubject("[KH정보교육원] 인증번호 메일입니다");
 		message.setText("인증번호 : " + number);
 		sender.send(message);
 		
+		//데이터베이스 등록 부분
 		CertificationDto certificationDto = new CertificationDto();
 		certificationDto.setEmail(to);
 		certificationDto.setSerial(number);
