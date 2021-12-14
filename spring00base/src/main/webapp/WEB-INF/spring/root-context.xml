@@ -9,9 +9,18 @@
 	xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:task="http://www.springframework.org/schema/task"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- 
+		미리 만들어둔 properties 들을 등록하여 이 설정파일에서 사용할 수 있도록 구현
+		= 경로와 관련된 모듈을 필요(spring-context)
+		= 사용은 EL로 한다(SpringEL)
+	 -->
+	<context:property-placeholder location="classpath:/properties/**/*.properties"/>
 	
 	<!-- 
 		필터는 전역설정파일에 등록되므로 필터에서 사용할 수 있는 도구들도 전역설정파일에 등록해야 한다
@@ -29,22 +38,22 @@
 		- JdbcTemplate : 명령 실행 도구
 	 -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="oracle.jdbc.OracleDriver"></property>
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
-		<property name="username" value="kh"></property>
-		<property name="password" value="kh"></property>
+		<property name="driverClassName" value="${database.driver}"></property>
+		<property name="url" value="${database.url}"></property>
+		<property name="username" value="${database.username}"></property>
+		<property name="password" value="${database.password}"></property>
 	</bean>
 	
 	<bean id="dbcpSource" class="org.apache.commons.dbcp2.BasicDataSource">
-		<property name="driverClassName" value="oracle.jdbc.OracleDriver"></property>
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
-		<property name="username" value="kh"></property>
-		<property name="password" value="kh"></property>
+		<property name="driverClassName" value="${database.driver}"></property>
+		<property name="url" value="${database.url}"></property>
+		<property name="username" value="${database.username}"></property>
+		<property name="password" value="${database.password}"></property>
 		
-		<property name="maxTotal" value="20"></property>
-		<property name="maxIdle" value="5"></property>
-		<property name="minIdle" value="0"></property>
-		<property name="maxWaitMillis" value="3000"></property>
+		<property name="maxTotal" value="${database.maxTotal}"></property>
+		<property name="maxIdle" value="${database.maxIdle}"></property>
+		<property name="minIdle" value="${database.minIdle}"></property>
+		<property name="maxWaitMillis" value="${database.maxWaitMillis}"></property>
 	</bean>
 	
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
@@ -80,11 +89,40 @@
 	<!-- 
 		사용할 필터를 bean으로 전체 설정에 등록
 		= 반드시 이곳에 해야 한다(서블릿 설정파일에 하면 인식이 안됨) 
-		 
+		
 		1. 직접 이곳에 <bean>으로 등록해도 되고
 		2. @Service 또는 @Component로 등록해도 된다(component-scan을 고쳤으니까)
 		
 		<bean id="springFilter" class="com.kh.spring15.filter.SpringFilter"></bean>	
 	-->
+	
+	<!-- 
+	이메일 전송 도구(필요할 경우 아래의 구문을 등록 해제하여 사용)
+		
+	<bean id="sender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="${email.host}"></property>
+		<property name="port" value="${email.port}"></property>
+		<property name="username" value="${email.username}"></property>
+		<property name="password" value="${email.password}"></property>
+		
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.debug">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
+				<prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+			</props>
+		</property>
+	</bean> 
+	-->
+	
+	
+	<!-- 
+		Task 관련 설정 
+		- namespace에 task를 추가
+		- annotation-driven 태그를 작성하여 관련 어노테이션을 활성화
+	-->
+	<task:annotation-driven/>	
 		
 </beans>

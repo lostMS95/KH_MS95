@@ -224,6 +224,32 @@
 		    <version>1.4</version>
 		</dependency>
 		
+		<!-- 
+			이메일 발송 관련 의존성
+			- com.sun.mail.javax.mail : 코어 의존성
+			- javax.mail.javax.mail-api : 자바 API 의존성
+			- org.springframework.spring-context-support : 스프링 어댑터 의존성
+			
+			(참고) Java Mail 1.5 미만은 com.sun.mail.javax.mail을 추가할 필요가 없다(통합되어 있음)
+			- java.mail.mail : 코어 의존성 및 자바 의존성
+			- org.springframework.spring-context-support : 스프링 어댑터 의존성
+		 -->
+		<dependency>
+		    <groupId>com.sun.mail</groupId>
+		    <artifactId>javax.mail</artifactId>
+		    <version>1.6.2</version>
+		</dependency>
+		<dependency>
+		    <groupId>javax.mail</groupId>
+		    <artifactId>javax.mail-api</artifactId>
+		    <version>1.6.2</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-context-support</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
+		
 	</dependencies>
 	
 	<!-- 
