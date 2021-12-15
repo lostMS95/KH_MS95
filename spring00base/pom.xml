@@ -250,6 +250,16 @@
 		    <version>${org.springframework-version}</version>
 		</dependency>
 		
+		<!-- 
+			데이터 변환 라이브러리
+			= 의존성만 추가하면 모든 @RestController의 반환값을 변환 처리한다 
+		-->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.13.0</version>
+		</dependency>
+		
 	</dependencies>
 	
 	<!-- 
